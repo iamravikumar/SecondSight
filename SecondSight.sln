@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondSight", "SecondSight.csproj", "{3322953F-562B-42C8-B1ED-A23B3A7D8402}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3322953F-562B-42C8-B1ED-A23B3A7D8402}.Debug|x86.ActiveCfg = Debug|x86
+		{3322953F-562B-42C8-B1ED-A23B3A7D8402}.Debug|x86.Build.0 = Debug|x86
+		{3322953F-562B-42C8-B1ED-A23B3A7D8402}.Release|x86.ActiveCfg = Release|x86
+		{3322953F-562B-42C8-B1ED-A23B3A7D8402}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E763A5A5-1976-4FCE-9F49-D10ACFECB883}
+	EndGlobalSection
+EndGlobal

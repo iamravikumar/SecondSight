@@ -1,0 +1,375 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{3322953F-562B-42C8-B1ED-A23B3A7D8402}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>SecondSight</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>SecondSight</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ExcelLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="ZedGraph, Version=5.0.9.41461, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigureComponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomSorts.cs" />
+    <Compile Include="ExcelHelper\ExcelHelper.cs" />
+    <Compile Include="Extended Controls\CollapsibleGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extended Controls\CollapsibleGroupBox.Designer.cs">
+      <DependentUpon>CollapsibleGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extended Controls\DataGridViewSS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extended Controls\ReportFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extended Controls\ReportFilter.Designer.cs">
+      <DependentUpon>ReportFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extended Controls\ReportFilterItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extended Controls\ReportFilterItem.Designer.cs">
+      <DependentUpon>ReportFilterItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FirstPage.Designer.cs" />
+    <Compile Include="GuiConfigAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiConfigDispense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiConfigReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiConfigSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiConfigView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventDispense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiEventView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Merge\MergeCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeCalculatorAddGroupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeCalculatorPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeCalculatorPage1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeCalculatorPage2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeCalculatorPage3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Merge\MergeDialog.Designer.cs">
+      <DependentUpon>MergeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Merge\MergePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergePage.Designer.cs">
+      <DependentUpon>MergePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Merge\MergePage1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Merge\MergePage1.Designer.cs">
+      <DependentUpon>MergePage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDBWizard\ExteriorWizardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\InteriorWizardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage6.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage7.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage8.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBPage9.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\NewDBWizard.Designer.cs">
+      <DependentUpon>NewDBWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDBWizard\WizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDBWizard\WizardPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OptionsDialog\SSOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionsDialog\SSOptionsDialog.Designer.cs">
+      <DependentUpon>SSOptionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptionsDialog\SSOptionsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OptionsDialog\SSOptionsPage.designer.cs">
+      <DependentUpon>SSOptionsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Spectacles.cs" />
+    <Compile Include="SSDataBase.cs" />
+    <Compile Include="TopEventHandlers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutPage.resx">
+      <DependentUpon>AboutPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extended Controls\CollapsibleGroupBox.resx">
+      <DependentUpon>CollapsibleGroupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extended Controls\ReportFilter.resx">
+      <DependentUpon>ReportFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extended Controls\ReportFilterItem.resx">
+      <DependentUpon>ReportFilterItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculator.resx">
+      <DependentUpon>MergeCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculatorAddGroupDialog.resx">
+      <DependentUpon>MergeCalculatorAddGroupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculatorPage.resx">
+      <DependentUpon>MergeCalculatorPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculatorPage1.resx">
+      <DependentUpon>MergeCalculatorPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculatorPage2.resx">
+      <DependentUpon>MergeCalculatorPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeCalculatorPage3.resx">
+      <DependentUpon>MergeCalculatorPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergeDialog.resx">
+      <DependentUpon>MergeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergePage.resx">
+      <DependentUpon>MergePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Merge\MergePage1.resx">
+      <DependentUpon>MergePage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage1.resx">
+      <DependentUpon>NewDBPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage2.resx">
+      <DependentUpon>NewDBPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage3.resx">
+      <DependentUpon>NewDBPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage4.resx">
+      <DependentUpon>NewDBPage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage5.resx">
+      <DependentUpon>NewDBPage5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage6.resx">
+      <DependentUpon>NewDBPage6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage7.resx">
+      <DependentUpon>NewDBPage7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage8.resx">
+      <DependentUpon>NewDBPage8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBPage9.resx">
+      <DependentUpon>NewDBPage9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\NewDBWizard.resx">
+      <DependentUpon>NewDBWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDBWizard\WizardForm.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsDialog\SSOptionsDialog.resx">
+      <DependentUpon>SSOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsDialog\SSOptionsPage.resx">
+      <DependentUpon>SSOptionsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExcelLibrary.dll" />
+    <None Include="icons\plus.png" />
+    <None Include="icons\minus.png" />
+    <Content Include="System.Data.SQLite.dll" />
+    <Content Include="vfpoledb.dll" />
+    <Content Include="ZedGraph.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-merge-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\pack\pack-6cd85944bdad0b94820ef88eee18f941f8c2e890.idx" />
+    <None Include=".git\objects\pack\pack-6cd85944bdad0b94820ef88eee18f941f8c2e890.pack" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include=".vscode\launch.json" />
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\SecondSight\v16\.suo" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\branches\" />
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
