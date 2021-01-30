@@ -16,17 +16,12 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using SMS.Windows.Forms;
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 
 namespace SecondSight.Merge
 {
-	public class MergeCalculatorPage : InteriorWizardPage
-	{
+    public class MergeCalculatorPage : InteriorWizardPage
+    {
         public MergeCalculatorPage()
         {
             InitializeComponent();

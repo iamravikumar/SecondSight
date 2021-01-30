@@ -16,8 +16,6 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SecondSight.Merge
@@ -37,14 +35,14 @@ namespace SecondSight.Merge
 
         public string ReturnLabel
         {
-            get {return return_label;}
+            get { return return_label; }
         }
 
         public int ReturnNumToAdd
         {
-            get {return return_numtoadd;}
+            get { return return_numtoadd; }
         }
-    
+
         public MCAddGroupDialog()
         {
             return_label = "";
@@ -58,24 +56,31 @@ namespace SecondSight.Merge
         /// </summary>
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if(tb_NumToAdd.Text.Length > 0) {
-                try {
+            if (tb_NumToAdd.Text.Length > 0)
+            {
+                try
+                {
                     return_numtoadd = Convert.ToInt16(tb_NumToAdd.Text);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("You must enter a whole number in \"Number of Glasses\" to continue.", "Invalid Number of Glasses",
                         MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     tb_NumToAdd.Focus();
                     return;
                 }
-                
+
                 //Set the label if there's something in the text box
-                if(tb_Label.Text.Length > 0) {
+                if (tb_Label.Text.Length > 0)
+                {
                     return_label = tb_Label.Text;
                 }
 
                 DialogResult = DialogResult.OK;
                 Close();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("You must enter a whole number in \"Number of Glasses\" to continue.", "Invalid Number of Glasses",
                     MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }

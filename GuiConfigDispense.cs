@@ -15,15 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Data;
-using System.IO;
 
 namespace SecondSight
 {
     public partial class MainForm
     {
-    	private DataTable dispenseTable;
+        private DataTable dispenseTable;
         private DataTable deleteTable;
     }
 }

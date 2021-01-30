@@ -23,16 +23,16 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SMS.Windows.Forms
 {
-	/// <summary>
-	/// Represents a single page within a wizard dialog.
-	/// </summary>
-	public class WizardPage : UserControl
-	{
+    /// <summary>
+    /// Represents a single page within a wizard dialog.
+    /// </summary>
+    public class WizardPage : UserControl
+    {
         // ==================================================================
         // Public Constructors
         // ==================================================================
@@ -42,16 +42,16 @@ namespace SMS.Windows.Forms
         /// class.
         /// </summary>
         public WizardPage()
-		{
+        {
             // Required for Windows Form Designer support
             InitializeComponent();
-		}
+        }
 
 
         // ==================================================================
         // Protected Properties
         // ==================================================================
-        
+
         /// <summary>
         /// Gets the <see cref="SMS.Windows.Forms.WizardForm">WizardForm</see>
         /// to which this <see cref="SMS.Windows.Forms.WizardPage">WizardPage</see>
@@ -65,12 +65,12 @@ namespace SMS.Windows.Forms
                 return (WizardForm)Parent;
             }
         }
-        
-        
+
+
         // ==================================================================
         // Private Methods
         // ==================================================================
-        
+
         #region Windows Form Designer generated code
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -79,16 +79,16 @@ namespace SMS.Windows.Forms
         private void InitializeComponent()
         {
             Name = "WizardPage";
-            Size = new System.Drawing.Size( 497, 313 );
+            Size = new System.Drawing.Size(497, 313);
 
         }
-		#endregion
+        #endregion
 
 
         // ==================================================================
         // Protected Internal Methods
         // ==================================================================
-        
+
         /// <summary>
         /// Called when the page is no longer the active page.
         /// </summary>
@@ -122,7 +122,7 @@ namespace SMS.Windows.Forms
             // Activate the page
             return true;
         }
-        
+
         /// <summary>
         /// Called when the user clicks the Back button in a wizard.
         /// </summary>
@@ -141,7 +141,7 @@ namespace SMS.Windows.Forms
             // Move to the default previous page in the wizard
             return WizardForm.NextPage;
         }
-        
+
         /// <summary>
         /// Called when the user clicks the Finish button in a wizard.
         /// </summary>
@@ -159,7 +159,7 @@ namespace SMS.Windows.Forms
             // Finish the wizard
             return true;
         }
-        
+
         /// <summary>
         /// Called when the user clicks the Next button in a wizard.
         /// </summary>
@@ -178,33 +178,37 @@ namespace SMS.Windows.Forms
             // Move to the default next page in the wizard
             return WizardForm.NextPage;
         }
-        
+
         public bool ValidatePath(string _path)
         {
-        	string p;
-			try {
-				p = Path.GetFullPath(_path); //Check for invalid characters
-			} catch (Exception) {
-				return false;
-			}
-        	
-        	if(Path.GetFileName(p) == "") { //Only directory specified
-        		return false;
-        	}
-			
-			return true;
+            string p;
+            try
+            {
+                p = Path.GetFullPath(_path); //Check for invalid characters
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            if (Path.GetFileName(p) == "")
+            { //Only directory specified
+                return false;
+            }
+
+            return true;
         }
-        
+
         public void CreateFolder(string _path)
-		{
-			if(!Directory.GetParent(_path).Exists)
-			{
-				CreateFolder(Directory.GetParent(_path).FullName);
-			}
-			if(!System.IO.Directory.Exists(_path))
-			{
-				System.IO.Directory.CreateDirectory(_path);
-			}
-		}
+        {
+            if (!Directory.GetParent(_path).Exists)
+            {
+                CreateFolder(Directory.GetParent(_path).FullName);
+            }
+            if (!System.IO.Directory.Exists(_path))
+            {
+                System.IO.Directory.CreateDirectory(_path);
+            }
+        }
     }
 }

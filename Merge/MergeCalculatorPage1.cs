@@ -16,17 +16,13 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using SMS.Windows.Forms;
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 
 namespace SecondSight.Merge
 {
-	public class MergeCalculatorPage1 : ExteriorWizardPage
-	{
+    public class MergeCalculatorPage1 : ExteriorWizardPage
+    {
         private Label label2;
         private Label label1;
 
@@ -47,11 +43,11 @@ namespace SecondSight.Merge
 
         protected internal override bool OnSetActive()
         {
-            if( !base.OnSetActive() )
+            if (!base.OnSetActive())
                 return false;
-            
+
             // Enable only the Next button on the this page    
-            Wizard.SetWizardButtons( WizardButton.Next );
+            Wizard.SetWizardButtons(WizardButton.Next);
             return true;
         }
 

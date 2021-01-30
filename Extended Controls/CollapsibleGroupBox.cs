@@ -72,13 +72,15 @@ namespace Indigo
             get { return m_collapsed; }
             set
             {
-                if (value != m_collapsed) {
+                if (value != m_collapsed)
+                {
                     m_collapsed = value;
 
                     if (!value)
                         // Expand
                         this.Size = m_FullSize;
-                    else {
+                    else
+                    {
                         // Collapse
                         m_bResizingFromCollapse = true;
                         this.Height = m_collapsedHeight;
@@ -131,7 +133,7 @@ namespace Indigo
 
         void DrawToggleButton(Graphics g)
         {
-            if(IsCollapsed)
+            if (IsCollapsed)
                 g.DrawImage(SecondSight.Properties.Resources.plus, m_toggleRect);
             else
                 g.DrawImage(SecondSight.Properties.Resources.minus, m_toggleRect);

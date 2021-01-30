@@ -15,11 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Text;
-using System.Data;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace SecondSight.Extended_Controls
 {
@@ -37,7 +33,7 @@ namespace SecondSight.Extended_Controls
         {
             DoubleBuffered = true;
             AutoGenerateColumns = false;
-//            ConfigureDGV();
+            //            ConfigureDGV();
         }
 
         /// <summary>
@@ -47,7 +43,8 @@ namespace SecondSight.Extended_Controls
         public void ConfigureDGV()
         {
             //Configure the column-level parameters
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++)
+            {
                 DataGridViewColumnSS col = new DataGridViewColumnSS();
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
                 //col.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -67,7 +64,8 @@ namespace SecondSight.Extended_Controls
             lbcol.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             Columns.Add(lbcol);
 
-            for (int i = 7; i < TotalColumns; i++) {
+            for (int i = 7; i < TotalColumns; i++)
+            {
                 DataGridViewColumnSS col = new DataGridViewColumnSS();
                 col.SortMode = DataGridViewColumnSortMode.NotSortable;
                 //col.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -77,72 +75,72 @@ namespace SecondSight.Extended_Controls
 
             //Customize each individual column
             Columns[0].Name = "SKU";
-        	Columns[0].DataPropertyName = "SKU";
-        	Columns[0].MinimumWidth = 55;
-        	Columns[1].Name = "Score";
-        	Columns[1].DataPropertyName = "Score";
-        	Columns[1].MinimumWidth = 60;
-        	Columns[1].DefaultCellStyle.Format = "0.#####";
-        	Columns[2].Name = "SphereOD";
+            Columns[0].DataPropertyName = "SKU";
+            Columns[0].MinimumWidth = 55;
+            Columns[1].Name = "Score";
+            Columns[1].DataPropertyName = "Score";
+            Columns[1].MinimumWidth = 60;
+            Columns[1].DefaultCellStyle.Format = "0.#####";
+            Columns[2].Name = "SphereOD";
             Columns[2].HeaderText = "OD Sphere";
-        	Columns[2].DataPropertyName = "SphereOD";
-        	Columns[2].DefaultCellStyle.Format = "0.00";
-        	Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[2].DataPropertyName = "SphereOD";
+            Columns[2].DefaultCellStyle.Format = "0.00";
+            Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             Columns[3].Name = "CylinderOD";
-        	Columns[3].HeaderText = "OD Cylinder";
-        	Columns[3].DataPropertyName = "CylinderOD";
-        	Columns[3].DefaultCellStyle.Format = "0.00";
-        	Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[4].Name = "AxisOD";
+            Columns[3].HeaderText = "OD Cylinder";
+            Columns[3].DataPropertyName = "CylinderOD";
+            Columns[3].DefaultCellStyle.Format = "0.00";
+            Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[4].Name = "AxisOD";
             Columns[4].HeaderText = "OD Axis";
-        	Columns[4].DataPropertyName = "AxisOD";
-        	Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[5].Name = "AddOD";
+            Columns[4].DataPropertyName = "AxisOD";
+            Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[5].Name = "AddOD";
             Columns[5].HeaderText = "OD Add";
-        	Columns[5].DataPropertyName = "AddOD";
-        	Columns[5].DefaultCellStyle.Format = "0.00";
-        	Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[6].Name = "SphereOS";
+            Columns[5].DataPropertyName = "AddOD";
+            Columns[5].DefaultCellStyle.Format = "0.00";
+            Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[6].Name = "SphereOS";
             Columns[6].HeaderText = "OS Sphere";
-        	Columns[6].DataPropertyName = "SphereOS";
-        	Columns[6].DefaultCellStyle.Format = "0.00";
-        	Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[7].Name = "CylinderOS";
+            Columns[6].DataPropertyName = "SphereOS";
+            Columns[6].DefaultCellStyle.Format = "0.00";
+            Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[7].Name = "CylinderOS";
             Columns[7].HeaderText = "OS Cylinder";
             Columns[7].DataPropertyName = "CylinderOS";
-        	Columns[7].DefaultCellStyle.Format = "0.00";
-        	Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[8].Name = "AxisOS";
+            Columns[7].DefaultCellStyle.Format = "0.00";
+            Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[8].Name = "AxisOS";
             Columns[8].HeaderText = "OS Axis";
-        	Columns[8].DataPropertyName = "AxisOS";
-        	Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[9].Name = "AddOS";
+            Columns[8].DataPropertyName = "AxisOS";
+            Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[9].Name = "AddOS";
             Columns[9].HeaderText = "OS Add";
-        	Columns[9].DataPropertyName = "AddOS";
-        	Columns[9].DefaultCellStyle.Format = "0.00";
-        	Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        	Columns[10].Name = "Type";
-        	Columns[10].DataPropertyName = "Type";
-        	Columns[11].Name = "Gender";
-        	Columns[11].DataPropertyName = "Gender";
-        	Columns[12].Name = "Size";
-        	Columns[12].DataPropertyName = "Size";
-        	Columns[13].Name = "Tint";
-        	Columns[13].DataPropertyName = "Tint";
+            Columns[9].DataPropertyName = "AddOS";
+            Columns[9].DefaultCellStyle.Format = "0.00";
+            Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Columns[10].Name = "Type";
+            Columns[10].DataPropertyName = "Type";
+            Columns[11].Name = "Gender";
+            Columns[11].DataPropertyName = "Gender";
+            Columns[12].Name = "Size";
+            Columns[12].DataPropertyName = "Size";
+            Columns[13].Name = "Tint";
+            Columns[13].DataPropertyName = "Tint";
             Columns[14].Name = "DateAdded";
-        	Columns[14].HeaderText = "Date Added";
-        	Columns[14].DataPropertyName = "DateAdded";
-        	Columns[14].Width = 75;
-        	Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            Columns[14].HeaderText = "Date Added";
+            Columns[14].DataPropertyName = "DateAdded";
+            Columns[14].Width = 75;
+            Columns[14].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
             Columns[15].Name = "DateDispensed";
             Columns[15].HeaderText = "Date Dispensed";
-        	Columns[15].DataPropertyName = "DateDispensed";
-        	Columns[15].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-        	Columns[15].MinimumWidth = 100;
-        	Columns[16].Name = "Comment";
-        	Columns[16].DataPropertyName = "Comment";
-        	Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        	Columns[16].Width = 100;
+            Columns[15].DataPropertyName = "DateDispensed";
+            Columns[15].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            Columns[15].MinimumWidth = 100;
+            Columns[16].Name = "Comment";
+            Columns[16].DataPropertyName = "Comment";
+            Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Columns[16].Width = 100;
         }
     }
 
@@ -180,9 +178,9 @@ namespace SecondSight.Extended_Controls
     }
 
     class DataGridViewCellSSRB : DataGridViewTextBoxCell
-        {
-        public override DataGridViewAdvancedBorderStyle AdjustCellBorderStyle(DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStyleInput, 
-            DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStylePlaceholder, bool singleVerticalBorderAdded, 
+    {
+        public override DataGridViewAdvancedBorderStyle AdjustCellBorderStyle(DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStyleInput,
+            DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStylePlaceholder, bool singleVerticalBorderAdded,
             bool singleHorizontalBorderAdded, bool isFirstDisplayedColumn, bool isFirstDisplayedRow)
         {
             dataGridViewAdvancedBorderStylePlaceholder.Right = DataGridViewAdvancedCellBorderStyle.OutsetDouble;
@@ -194,9 +192,9 @@ namespace SecondSight.Extended_Controls
     }
 
     class DataGridViewCellSSLB : DataGridViewTextBoxCell
-        {
-        public override DataGridViewAdvancedBorderStyle AdjustCellBorderStyle(DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStyleInput, 
-            DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStylePlaceholder, bool singleVerticalBorderAdded, 
+    {
+        public override DataGridViewAdvancedBorderStyle AdjustCellBorderStyle(DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStyleInput,
+            DataGridViewAdvancedBorderStyle dataGridViewAdvancedBorderStylePlaceholder, bool singleVerticalBorderAdded,
             bool singleHorizontalBorderAdded, bool isFirstDisplayedColumn, bool isFirstDisplayedRow)
         {
             dataGridViewAdvancedBorderStylePlaceholder.Right = DataGridViewAdvancedCellBorderStyle.Single;

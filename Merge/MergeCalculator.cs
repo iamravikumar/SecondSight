@@ -15,19 +15,17 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
+using SMS.Windows.Forms;
 using System;
-using System.IO;
-using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SMS.Windows.Forms;
 
 namespace SecondSight.Merge
 {
-	/// <summary>
-	/// Description of NewDBWizard.
-	/// </summary>
-	public partial class MergeCalculator : WizardForm
+    /// <summary>
+    /// Description of NewDBWizard.
+    /// </summary>
+    public partial class MergeCalculator : WizardForm
     {
         private Button btn_Help;
         protected internal MergeCalculatorVars mcvars;
@@ -39,7 +37,7 @@ namespace SecondSight.Merge
 
         public MergeCalculatorVars MCVars
         {
-            get {return mcvars;}
+            get { return mcvars; }
         }
 
         //Constructor
@@ -63,7 +61,7 @@ namespace SecondSight.Merge
         /// </summary>
         private void btn_Help_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void InitializeComponent()

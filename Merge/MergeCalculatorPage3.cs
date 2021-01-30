@@ -17,18 +17,15 @@
 
 using SMS.Windows.Forms;
 using System;
-using System.IO;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Data.SQLite;
+using System.IO;
+using System.Windows.Forms;
 
 
 namespace SecondSight.Merge
 {
-	public class MergeCalculatorPage3 : MergeCalculatorPage
-	{
+    public class MergeCalculatorPage3 : MergeCalculatorPage
+    {
         private ListView lv_Groups;
         private ColumnHeader MinSKU;
         private ColumnHeader MaxSKU;
@@ -47,9 +44,9 @@ namespace SecondSight.Merge
         private static string inst_list = "2)  Run the SecondSight program." + Environment.NewLine +
             "3)  In the menu on the top-left, click File, then click Load Database." + Environment.NewLine +
             "4)  Find the SecondSight partial database file from step 1, select it and click Open." + Environment.NewLine +
-            "5)  The program should display the name and location of the database at the top of the screen."  + Environment.NewLine +
+            "5)  The program should display the name and location of the database at the top of the screen." + Environment.NewLine +
             "    Verify that these are correct before proceeding." + Environment.NewLine +
-            "6)  Near the bottom left of the program, there is a section labeled \"Limit SKU Range\"." + Environment.NewLine + 
+            "6)  Near the bottom left of the program, there is a section labeled \"Limit SKU Range\"." + Environment.NewLine +
             "    Verify that the text boxes filled in automatically with your assigned SKU minimum and maximum (detailed below)." + Environment.NewLine +
             "7)  Add your glasses to the database using the form on the left side of the program." + Environment.NewLine +
             "    Each item you add will be displayed on the list to the right." + Environment.NewLine + Environment.NewLine;
@@ -72,17 +69,27 @@ namespace SecondSight.Merge
         {
             //Locate or create the folder where the copies will be stored
             string planpath = String.Format("{0}/MergePlan", Wizard.defaultpath);
-            if (!Directory.Exists(planpath)) {
-                if(Wizard.defaultpath != "") { //If the default is defined
-                    try {
+            if (!Directory.Exists(planpath))
+            {
+                if (Wizard.defaultpath != "")
+                { //If the default is defined
+                    try
+                    {
                         Directory.CreateDirectory(String.Format("{0}/MergePlan", Wizard.defaultpath));
-                    } catch { //Can't create the directory for some reason, dump it in the same folder where the master database is
+                    }
+                    catch
+                    { //Can't create the directory for some reason, dump it in the same folder where the master database is
                         planpath = Path.GetDirectoryName(Wizard.masterdb.MyPath);
                     }
-                } else { //Undefined default path, create the MergePlan folder where the current master database is located
-                    try {
+                }
+                else
+                { //Undefined default path, create the MergePlan folder where the current master database is located
+                    try
+                    {
                         planpath = (Directory.CreateDirectory(String.Format("{0}/MergePlan", Path.GetDirectoryName(Wizard.masterdb.MyPath)))).FullName;
-                    } catch { //Can't create the directory for some reason, dump it in the same folder where the master database is
+                    }
+                    catch
+                    { //Can't create the directory for some reason, dump it in the same folder where the master database is
                         planpath = Path.GetDirectoryName(Wizard.masterdb.MyPath);
                     }
                 }
@@ -90,17 +97,22 @@ namespace SecondSight.Merge
 
             //Loop through each entry in mcvars (the MergeCalculatorVars stored in the parent)
             //and create and populate the data table with the additional merge plan info in it
-            for (int i = 0; i < Wizard.mcvars.MinSKU.Count; i++) {
+            for (int i = 0; i < Wizard.mcvars.MinSKU.Count; i++)
+            {
                 string fullpath = String.Format("{0}/{{Merge Plan - {1}}} {2}.ssp", planpath, Wizard.mcvars.GroupLabel[i],
                                     Path.GetFileNameWithoutExtension(Wizard.masterdb.MyPath));
 
                 //Step one - Create a copy of the master and name it descriptively
-                try {
-                    if (File.Exists(fullpath)) {
+                try
+                {
+                    if (File.Exists(fullpath))
+                    {
                         File.Delete(fullpath);    //Delete the old version of the merge plan database file
                     }
-                    File.Copy(Wizard.masterdb.MyPath, fullpath);    
-                } catch {
+                    File.Copy(Wizard.masterdb.MyPath, fullpath);
+                }
+                catch
+                {
                     MessageBox.Show(String.Format("Unable to copy the database.  Please make sure write permissions are granted for the \"{0}\"folder.", planpath),
                         "Unable to Copy Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -119,9 +131,12 @@ namespace SecondSight.Merge
                 dbcmd.Parameters.Add(skumaxparam);
 
                 //Open the database
-                try {
+                try
+                {
                     dbcon.Open();
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show(String.Format("One of the copies could not be properly configured.  Please make sure write permissions are granted for the \"{0}\"folder.", planpath),
                         "Unable to Configure Copies", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -155,11 +170,15 @@ namespace SecondSight.Merge
 
                 //Step 3 - Create the instruction file
                 string readmepath = planpath + "/Instructions - " + Path.GetFileNameWithoutExtension(fullpath) + ".txt";
-                try {
-                    if (File.Exists(readmepath)) {
+                try
+                {
+                    if (File.Exists(readmepath))
+                    {
                         File.Delete(readmepath);
                     }
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show(String.Format("One of the copies could not be properly configured.  Please make sure write permissions are granted for the \"{0}\"folder.", planpath),
                         "Unable to Configure Copies", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -180,7 +199,8 @@ namespace SecondSight.Merge
             }
 
             //Step 4 - Open the folder if the checkbox is checked
-            if (ch_OpenFolder.Checked) {
+            if (ch_OpenFolder.Checked)
+            {
                 System.Diagnostics.Process.Start(planpath);
             }
 
@@ -196,11 +216,12 @@ namespace SecondSight.Merge
 
         protected internal override bool OnSetActive()
         {
-            if( !base.OnSetActive() )
+            if (!base.OnSetActive())
                 return false;
 
             //Populate the list view on this page with the calculated values from the previous page
-            for(int i = 0; i < Wizard.mcvars.MinSKU.Count; i++) {
+            for (int i = 0; i < Wizard.mcvars.MinSKU.Count; i++)
+            {
                 ListViewItem lvi = new ListViewItem();
                 lvi.Text = Wizard.mcvars.GroupLabel[i];
                 lvi.SubItems.Add(Wizard.mcvars.MinSKU[i].ToString());
@@ -209,7 +230,7 @@ namespace SecondSight.Merge
             }
 
             // Enable both the Finish and Back buttons on this page    
-            Wizard.SetWizardButtons( WizardButton.Back | WizardButton.Finish );
+            Wizard.SetWizardButtons(WizardButton.Back | WizardButton.Finish);
             return true;
         }
 

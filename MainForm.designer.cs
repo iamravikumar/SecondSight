@@ -17,34 +17,36 @@
 
 namespace SecondSight
 {
-	partial class MainForm
-	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
-		
-		/// <summary>
-		/// Disposes resources used by the form.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-		
-		/// <summary>
-		/// This method is required for Windows Forms designer support.
-		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Designer variable used to keep track of non-visual components.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Disposes resources used by the form.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// This method is required for Windows Forms designer support.
+        /// Do not change the method contents inside the source code editor. The Forms designer might
+        /// not be able to load this method if it was changed manually.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -3202,167 +3204,167 @@ namespace SecondSight
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		private System.Windows.Forms.Label lb_V_View;
-		private System.Windows.Forms.ComboBox cb_V_SearchIn;
-		private System.Windows.Forms.Label lb_V_SearchBy;
-		private System.Windows.Forms.Timer timer_AutoBackup;
-		private System.Windows.Forms.ToolStripMenuItem menu_ToolsOptionsMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private System.Windows.Forms.ToolStripMenuItem menu_FileCloseDatabaseMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem menu_ToolsExportMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem supportWebsiteToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem menu_HelpHelptopicsMenuItem;
-		private System.Windows.Forms.Button btn_Add_DeleteSelected;
-		private System.Windows.Forms.Label lb_Add_LockSphereNegative;
-		private System.Windows.Forms.CheckBox chb_Add_SphereLockOS;
-		private System.Windows.Forms.CheckBox chb_Add_SphereLockOD;
-		private System.Windows.Forms.ComboBox cb_V_SearchByField;
-		private System.Windows.Forms.TextBox tb_V_SearchByField;
-		private System.Windows.Forms.Button btn_V_SearchByField;
-		private System.Windows.Forms.Label lb_D_Sphere;
-		private System.Windows.Forms.Label lb_D_Cylinder;
-		private System.Windows.Forms.Label lb_D_Axis;
-		private System.Windows.Forms.Label lb_D_Add;
-		private System.Windows.Forms.Label lb_D_OS;
-		private System.Windows.Forms.Label lb_D_OD;
-		private System.Windows.Forms.Label lb_D_Comment;
-		private System.Windows.Forms.GroupBox gb_D_Others;
-		private System.Windows.Forms.GroupBox gb_D_Gender;
-		private System.Windows.Forms.RadioButton rb_D_Female;
-		private System.Windows.Forms.RadioButton rb_D_Male;
-		private System.Windows.Forms.RadioButton rb_D_Unisex;
-		private System.Windows.Forms.GroupBox gb_D_Tint;
-		private System.Windows.Forms.RadioButton rb_D_DarkTint;
-		private System.Windows.Forms.RadioButton rb_D_LightTint;
-		private System.Windows.Forms.RadioButton rb_D_NoTint;
+        }
+        private System.Windows.Forms.Label lb_V_View;
+        private System.Windows.Forms.ComboBox cb_V_SearchIn;
+        private System.Windows.Forms.Label lb_V_SearchBy;
+        private System.Windows.Forms.Timer timer_AutoBackup;
+        private System.Windows.Forms.ToolStripMenuItem menu_ToolsOptionsMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menu_FileCloseDatabaseMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_ToolsExportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supportWebsiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menu_HelpHelptopicsMenuItem;
+        private System.Windows.Forms.Button btn_Add_DeleteSelected;
+        private System.Windows.Forms.Label lb_Add_LockSphereNegative;
+        private System.Windows.Forms.CheckBox chb_Add_SphereLockOS;
+        private System.Windows.Forms.CheckBox chb_Add_SphereLockOD;
+        private System.Windows.Forms.ComboBox cb_V_SearchByField;
+        private System.Windows.Forms.TextBox tb_V_SearchByField;
+        private System.Windows.Forms.Button btn_V_SearchByField;
+        private System.Windows.Forms.Label lb_D_Sphere;
+        private System.Windows.Forms.Label lb_D_Cylinder;
+        private System.Windows.Forms.Label lb_D_Axis;
+        private System.Windows.Forms.Label lb_D_Add;
+        private System.Windows.Forms.Label lb_D_OS;
+        private System.Windows.Forms.Label lb_D_OD;
+        private System.Windows.Forms.Label lb_D_Comment;
+        private System.Windows.Forms.GroupBox gb_D_Others;
+        private System.Windows.Forms.GroupBox gb_D_Gender;
+        private System.Windows.Forms.RadioButton rb_D_Female;
+        private System.Windows.Forms.RadioButton rb_D_Male;
+        private System.Windows.Forms.RadioButton rb_D_Unisex;
+        private System.Windows.Forms.GroupBox gb_D_Tint;
+        private System.Windows.Forms.RadioButton rb_D_DarkTint;
+        private System.Windows.Forms.RadioButton rb_D_LightTint;
+        private System.Windows.Forms.RadioButton rb_D_NoTint;
         private System.Windows.Forms.GroupBox gb_D_Size;
-		private System.Windows.Forms.RadioButton rb_D_Large;
-		private System.Windows.Forms.RadioButton rb_D_Medium;
-		private System.Windows.Forms.RadioButton rb_D_Small;
-		private System.Windows.Forms.GroupBox gb_D_Type;
-		private System.Windows.Forms.RadioButton rb_D_Multi;
-		private System.Windows.Forms.RadioButton rb_D_Single;
-		private System.Windows.Forms.TextBox tb_D_CylOS;
-		private System.Windows.Forms.TextBox tb_D_AxisOS;
-		private System.Windows.Forms.TextBox tb_D_AddOS;
-		private System.Windows.Forms.TextBox tb_D_SphereOS;
-		private System.Windows.Forms.TextBox tb_D_CylOD;
-		private System.Windows.Forms.TextBox tb_D_AxisOD;
-		private System.Windows.Forms.TextBox tb_D_AddOD;
-		private System.Windows.Forms.TextBox tb_D_SphereOD;
-		private System.Windows.Forms.TextBox tb_D_Comment;
-		private System.Windows.Forms.TextBox tb_Add_SphereOD;
-		private System.Windows.Forms.Label lb_V_CurrentOpenDB;
+        private System.Windows.Forms.RadioButton rb_D_Large;
+        private System.Windows.Forms.RadioButton rb_D_Medium;
+        private System.Windows.Forms.RadioButton rb_D_Small;
+        private System.Windows.Forms.GroupBox gb_D_Type;
+        private System.Windows.Forms.RadioButton rb_D_Multi;
+        private System.Windows.Forms.RadioButton rb_D_Single;
+        private System.Windows.Forms.TextBox tb_D_CylOS;
+        private System.Windows.Forms.TextBox tb_D_AxisOS;
+        private System.Windows.Forms.TextBox tb_D_AddOS;
+        private System.Windows.Forms.TextBox tb_D_SphereOS;
+        private System.Windows.Forms.TextBox tb_D_CylOD;
+        private System.Windows.Forms.TextBox tb_D_AxisOD;
+        private System.Windows.Forms.TextBox tb_D_AddOD;
+        private System.Windows.Forms.TextBox tb_D_SphereOD;
+        private System.Windows.Forms.TextBox tb_D_Comment;
+        private System.Windows.Forms.TextBox tb_Add_SphereOD;
+        private System.Windows.Forms.Label lb_V_CurrentOpenDB;
         private System.Windows.Forms.Label lb_Add_CurrentOpenDB;
-		private System.Windows.Forms.TextBox tb_Add_CylOD;
-		private System.Windows.Forms.Label lb_S_Closeup;
-		private System.Windows.Forms.Label lb_S_Distance;
-		private System.Windows.Forms.RadioButton rb_Add_LightTint;
-		private System.Windows.Forms.RadioButton rb_Add_DarkTint;
-		private System.Windows.Forms.RadioButton rb_Add_NoTint;
-		private System.Windows.Forms.GroupBox gb_Add_InventoryView;
-		private System.Windows.Forms.GroupBox gb_S_SearchResults;
-		private System.Windows.Forms.GroupBox gb_S_SearchForGlasses;
-		private System.Windows.Forms.Label lb_S_OS;
-		private System.Windows.Forms.Label lb_S_OD;
-		private System.Windows.Forms.TabControl tabc_MainForm;
-		private System.Windows.Forms.Label lb_S_CurrentOpenDB;
-		private System.Windows.Forms.Label lb_D_CurrentOpenDB;
-		private System.Windows.Forms.TabPage tabp_AddItems;
-		private System.Windows.Forms.TabPage tabp_Search;
-		private System.Windows.Forms.TabPage tabp_Dispense;
-		private System.Windows.Forms.TabPage tabp_ViewInventory;
-		private System.Windows.Forms.TabPage tabp_Reports;
-		private System.Windows.Forms.Button btn_S_Clear;
+        private System.Windows.Forms.TextBox tb_Add_CylOD;
+        private System.Windows.Forms.Label lb_S_Closeup;
+        private System.Windows.Forms.Label lb_S_Distance;
+        private System.Windows.Forms.RadioButton rb_Add_LightTint;
+        private System.Windows.Forms.RadioButton rb_Add_DarkTint;
+        private System.Windows.Forms.RadioButton rb_Add_NoTint;
+        private System.Windows.Forms.GroupBox gb_Add_InventoryView;
+        private System.Windows.Forms.GroupBox gb_S_SearchResults;
+        private System.Windows.Forms.GroupBox gb_S_SearchForGlasses;
+        private System.Windows.Forms.Label lb_S_OS;
+        private System.Windows.Forms.Label lb_S_OD;
+        private System.Windows.Forms.TabControl tabc_MainForm;
+        private System.Windows.Forms.Label lb_S_CurrentOpenDB;
+        private System.Windows.Forms.Label lb_D_CurrentOpenDB;
+        private System.Windows.Forms.TabPage tabp_AddItems;
+        private System.Windows.Forms.TabPage tabp_Search;
+        private System.Windows.Forms.TabPage tabp_Dispense;
+        private System.Windows.Forms.TabPage tabp_ViewInventory;
+        private System.Windows.Forms.TabPage tabp_Reports;
+        private System.Windows.Forms.Button btn_S_Clear;
         private System.Windows.Forms.Button btn_S_Search;
-		private System.Windows.Forms.RadioButton rb_S_Large;
-		private System.Windows.Forms.RadioButton rb_S_Multi;
-		private System.Windows.Forms.RadioButton rb_S_Single;
-		private System.Windows.Forms.CheckBox chb_S_SplitMultifocals;
-		private System.Windows.Forms.Label lb_S_Sphere;
-		private System.Windows.Forms.Label lb_S_Cylinder;
-		private System.Windows.Forms.Label lb_S_Axis;
-		private System.Windows.Forms.Label lb_S_Add;
-		private System.Windows.Forms.GroupBox gb_S_Gender;
-		private System.Windows.Forms.RadioButton rb_S_Female;
-		private System.Windows.Forms.RadioButton rb_S_Male;
-		private System.Windows.Forms.RadioButton rb_S_Unisex;
-		private System.Windows.Forms.GroupBox gb_S_DomEye;
-		private System.Windows.Forms.RadioButton rb_S_OU;
-		private System.Windows.Forms.RadioButton rb_S_OS;
-		private System.Windows.Forms.RadioButton rb_S_OD;
-		private System.Windows.Forms.GroupBox gb_S_Size;
-		private System.Windows.Forms.RadioButton rb_S_Medium;
-		private System.Windows.Forms.RadioButton rb_S_Small;
-		private System.Windows.Forms.GroupBox gb_S_Type;
-		private System.Windows.Forms.RadioButton rb_S_AnyGender;
-		private System.Windows.Forms.RadioButton rb_S_AnySize;
-		private System.Windows.Forms.TextBox tb_S_CylOS;
-		private System.Windows.Forms.TextBox tb_S_AxisOS;
-		private System.Windows.Forms.TextBox tb_S_AddOS;
-		private System.Windows.Forms.TextBox tb_S_SphereOS;
-		private System.Windows.Forms.TextBox tb_S_CylOD;
-		private System.Windows.Forms.TextBox tb_S_AxisOD;
-		private System.Windows.Forms.TextBox tb_S_AddOD;
-		private System.Windows.Forms.TextBox tb_S_SphereOD;
-		private System.Windows.Forms.Label lb_Add_Sphere;
-		private System.Windows.Forms.Label lb_Add_Cylinder;
-		private System.Windows.Forms.Label lb_Add_Axis;
-		private System.Windows.Forms.Label lb_Add_Add;
-		private System.Windows.Forms.Button btn_Add_Clear;
-		private System.Windows.Forms.Button btn_Add_AddNew;
-		private System.Windows.Forms.TextBox tb_Add_MinSKU;
-		private System.Windows.Forms.TextBox tb_Add_MaxSKU;
-		private System.Windows.Forms.Label lb_Add_Max;
-		private System.Windows.Forms.Label lb_Add_Min;
-		private System.Windows.Forms.Label lb_Add_LimitSKU;
-		private System.Windows.Forms.RadioButton rb_Add_Female;
-		private System.Windows.Forms.RadioButton rb_Add_Male;
+        private System.Windows.Forms.RadioButton rb_S_Large;
+        private System.Windows.Forms.RadioButton rb_S_Multi;
+        private System.Windows.Forms.RadioButton rb_S_Single;
+        private System.Windows.Forms.CheckBox chb_S_SplitMultifocals;
+        private System.Windows.Forms.Label lb_S_Sphere;
+        private System.Windows.Forms.Label lb_S_Cylinder;
+        private System.Windows.Forms.Label lb_S_Axis;
+        private System.Windows.Forms.Label lb_S_Add;
+        private System.Windows.Forms.GroupBox gb_S_Gender;
+        private System.Windows.Forms.RadioButton rb_S_Female;
+        private System.Windows.Forms.RadioButton rb_S_Male;
+        private System.Windows.Forms.RadioButton rb_S_Unisex;
+        private System.Windows.Forms.GroupBox gb_S_DomEye;
+        private System.Windows.Forms.RadioButton rb_S_OU;
+        private System.Windows.Forms.RadioButton rb_S_OS;
+        private System.Windows.Forms.RadioButton rb_S_OD;
+        private System.Windows.Forms.GroupBox gb_S_Size;
+        private System.Windows.Forms.RadioButton rb_S_Medium;
+        private System.Windows.Forms.RadioButton rb_S_Small;
+        private System.Windows.Forms.GroupBox gb_S_Type;
+        private System.Windows.Forms.RadioButton rb_S_AnyGender;
+        private System.Windows.Forms.RadioButton rb_S_AnySize;
+        private System.Windows.Forms.TextBox tb_S_CylOS;
+        private System.Windows.Forms.TextBox tb_S_AxisOS;
+        private System.Windows.Forms.TextBox tb_S_AddOS;
+        private System.Windows.Forms.TextBox tb_S_SphereOS;
+        private System.Windows.Forms.TextBox tb_S_CylOD;
+        private System.Windows.Forms.TextBox tb_S_AxisOD;
+        private System.Windows.Forms.TextBox tb_S_AddOD;
+        private System.Windows.Forms.TextBox tb_S_SphereOD;
+        private System.Windows.Forms.Label lb_Add_Sphere;
+        private System.Windows.Forms.Label lb_Add_Cylinder;
+        private System.Windows.Forms.Label lb_Add_Axis;
+        private System.Windows.Forms.Label lb_Add_Add;
+        private System.Windows.Forms.Button btn_Add_Clear;
+        private System.Windows.Forms.Button btn_Add_AddNew;
+        private System.Windows.Forms.TextBox tb_Add_MinSKU;
+        private System.Windows.Forms.TextBox tb_Add_MaxSKU;
+        private System.Windows.Forms.Label lb_Add_Max;
+        private System.Windows.Forms.Label lb_Add_Min;
+        private System.Windows.Forms.Label lb_Add_LimitSKU;
+        private System.Windows.Forms.RadioButton rb_Add_Female;
+        private System.Windows.Forms.RadioButton rb_Add_Male;
         private System.Windows.Forms.RadioButton rb_Add_Unisex;
-		private System.Windows.Forms.RadioButton rb_Add_Large;
-		private System.Windows.Forms.RadioButton rb_Add_Medium;
-		private System.Windows.Forms.RadioButton rb_Add_Small;
-		private System.Windows.Forms.RadioButton rb_Add_Multi;
+        private System.Windows.Forms.RadioButton rb_Add_Large;
+        private System.Windows.Forms.RadioButton rb_Add_Medium;
+        private System.Windows.Forms.RadioButton rb_Add_Small;
+        private System.Windows.Forms.RadioButton rb_Add_Multi;
         private System.Windows.Forms.RadioButton rb_Add_Single;
-		private System.Windows.Forms.GroupBox gb_D_DispenseGlasses;
-		private System.Windows.Forms.GroupBox gb_D_DetailedInfo;
-		private System.Windows.Forms.ListBox lbox_D_ToDispense;
-		private System.Windows.Forms.Button btn_D_Remove;
-		private System.Windows.Forms.Button btn_D_Dispense;
-		private System.Windows.Forms.Label lb_D_ToDispense;
-		private System.Windows.Forms.Button btn_D_AddToList;
-		private System.Windows.Forms.Label lb_D_EnterSKU;
-		private System.Windows.Forms.TextBox tb_D_EnterSKU;
-		private System.Windows.Forms.GroupBox gb_Add_Addnewitem;
-		private System.Windows.Forms.TextBox tb_Add_CylOS;
-		private System.Windows.Forms.TextBox tb_Add_AxisOS;
-		private System.Windows.Forms.TextBox tb_Add_AddOS;
-		private System.Windows.Forms.TextBox tb_Add_SphereOS;
-		private System.Windows.Forms.TextBox tb_Add_AxisOD;
-		private System.Windows.Forms.TextBox tb_Add_AddOD;
-		private System.Windows.Forms.GroupBox gb_Add_Others;
-		private System.Windows.Forms.GroupBox gb_Add_Tint;
-		private System.Windows.Forms.GroupBox gb_Add_Gender;
-		private System.Windows.Forms.GroupBox gb_Add_Size;
-		private System.Windows.Forms.GroupBox gb_Add_Type;
-		private System.Windows.Forms.GroupBox groupBox9;
-		private System.Windows.Forms.Label lb_Add_OD;
-		private System.Windows.Forms.Label lb_Add_OS;
-		private System.Windows.Forms.TextBox tb_Add_Comment;
-		private System.Windows.Forms.Label lb_Add_Comment;
-		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem menu_FileExitMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem menu_FileBackupMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem menu_FileOpenMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem menu_FileNewMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-		private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.GroupBox gb_D_DispenseGlasses;
+        private System.Windows.Forms.GroupBox gb_D_DetailedInfo;
+        private System.Windows.Forms.ListBox lbox_D_ToDispense;
+        private System.Windows.Forms.Button btn_D_Remove;
+        private System.Windows.Forms.Button btn_D_Dispense;
+        private System.Windows.Forms.Label lb_D_ToDispense;
+        private System.Windows.Forms.Button btn_D_AddToList;
+        private System.Windows.Forms.Label lb_D_EnterSKU;
+        private System.Windows.Forms.TextBox tb_D_EnterSKU;
+        private System.Windows.Forms.GroupBox gb_Add_Addnewitem;
+        private System.Windows.Forms.TextBox tb_Add_CylOS;
+        private System.Windows.Forms.TextBox tb_Add_AxisOS;
+        private System.Windows.Forms.TextBox tb_Add_AddOS;
+        private System.Windows.Forms.TextBox tb_Add_SphereOS;
+        private System.Windows.Forms.TextBox tb_Add_AxisOD;
+        private System.Windows.Forms.TextBox tb_Add_AddOD;
+        private System.Windows.Forms.GroupBox gb_Add_Others;
+        private System.Windows.Forms.GroupBox gb_Add_Tint;
+        private System.Windows.Forms.GroupBox gb_Add_Gender;
+        private System.Windows.Forms.GroupBox gb_Add_Size;
+        private System.Windows.Forms.GroupBox gb_Add_Type;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label lb_Add_OD;
+        private System.Windows.Forms.Label lb_Add_OS;
+        private System.Windows.Forms.TextBox tb_Add_Comment;
+        private System.Windows.Forms.Label lb_Add_Comment;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_FileExitMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem menu_FileBackupMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menu_FileOpenMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_FileNewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menu_ToolsGroupDataEntryMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menu_ToolsMergeDBMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menu_ToolsGroupPlannerMenuItem;
@@ -3470,5 +3472,5 @@ namespace SecondSight
         private System.Windows.Forms.ToolStripMenuItem menu_ToolsExportReportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menu_FileRestoreMenuItem;
         private System.Windows.Forms.ToolTip tt_Main;
-	}
+    }
 }

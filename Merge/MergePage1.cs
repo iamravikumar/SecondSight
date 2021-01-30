@@ -16,12 +16,7 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SecondSight.Merge
@@ -37,9 +32,12 @@ namespace SecondSight.Merge
         {
             InitializeComponent();
             mvars = _mvars;
-            if(mvars.Masterdbname.Length > 0) {
+            if (mvars.Masterdbname.Length > 0)
+            {
                 lb_CurrentMaster.Text = "Master Database: " + mvars.Masterdbname + " (" + mvars.Masterdblocation + ")";
-            } else {
+            }
+            else
+            {
                 lb_CurrentMaster.Text = "No master database currently loaded.";
             }
         }
@@ -58,11 +56,15 @@ namespace SecondSight.Merge
             ofd.DefaultExt = ".ssd";
 
             //Process the open file dialog
-            if (ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 SSDataBase ssdbt = new SSDataBase();
-                try {
+                try
+                {
                     ssdbt.OpenDB(ofd.FileName);
-                } catch { //Not a valid secondsight database
+                }
+                catch
+                { //Not a valid secondsight database
                     MessageBox.Show("The selected file is not a valid SecondSight database and cannot be used as the master database for a merge.",
                         "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
@@ -73,12 +75,15 @@ namespace SecondSight.Merge
                 string tloc = mvars.Masterdblocation;
                 string tdate = mvars.Masterdbdate;
                 DataTable dt = new DataTable();
-                try {
+                try
+                {
                     ssdbt.GetTable(dt, SSTable.DBInfo);
                     mvars.Masterdbname = Convert.ToString(dt.Rows[0][0]);
                     mvars.Masterdblocation = Convert.ToString(dt.Rows[0][1]);
                     mvars.Masterdbdate = String.Format("{0:MM/dd/yyyy}", dt.Rows[0][2]);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("The selected file is not a valid SecondSight database and cannot be used as the master database for a merge.",
                         "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     mvars.Masterdbname = tname;
@@ -89,10 +94,13 @@ namespace SecondSight.Merge
 
                 //Close the previously selected master database, switch the pointer to the new one and
                 //update the label on the control
-                if(mvars.Masterdb.IsOpen()) {
-                    try {
+                if (mvars.Masterdb.IsOpen())
+                {
+                    try
+                    {
                         mvars.Masterdb.CloseDB();
-                    } catch {}
+                    }
+                    catch { }
                 }
                 mvars.Masterdb = ssdbt;
                 lb_CurrentMaster.Text = "Master Database: " + mvars.Masterdbname + " (" + mvars.Masterdblocation + ")";
@@ -113,7 +121,8 @@ namespace SecondSight.Merge
             ofd.DefaultExt = ".ssp";
 
             //Process selected files if user didn't cancel
-            if( ofd.ShowDialog() == DialogResult.OK ) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 string errmsg = ""; //Holds composite error message
                 Cursor.Current = Cursors.WaitCursor;
 
@@ -121,56 +130,69 @@ namespace SecondSight.Merge
                 //master DB info and exclude if they don't match (display error message after batch processing)
                 //check for mergeDB-specific info (the label and the assigned min/max SKUs) and include it in the
                 //list box entry if available
-                foreach (string fname in ofd.FileNames) {
+                foreach (string fname in ofd.FileNames)
+                {
                     SSDataBase ssdb = new SSDataBase();
                     DataTable dt = new DataTable();
                     string[] info = new string[3];
-                    
-                    if (fname != mvars.Masterdb.MyPath) {
-                        try {
+
+                    if (fname != mvars.Masterdb.MyPath)
+                    {
+                        try
+                        {
                             ssdb.OpenDB(fname);
                             ssdb.GetTable(dt, SSTable.DBInfo);
                             info[0] = dt.Rows[0][0].ToString();
                             info[1] = dt.Rows[0][1].ToString();
                             info[2] = String.Format("{0:MM/dd/yyyy}", dt.Rows[0][2]);
-                        } catch { //An exception will be thrown if something
+                        }
+                        catch
+                        { //An exception will be thrown if something
                             info[0] = info[1] = info[2] = "Unknown";
                         }
-                      
+
                         //If the database info doesn't match, compile an error message, 
                         //otherwise include the info in the listbox and mvars
-                        if( (info[0] != mvars.Masterdbname) ||
+                        if ((info[0] != mvars.Masterdbname) ||
                             (info[1] != mvars.Masterdblocation) ||
-                            (info[2] != mvars.Masterdbdate)) {
+                            (info[2] != mvars.Masterdbdate))
+                        {
                             errmsg += System.IO.Path.GetFileName(fname) + ": " + info[0] + " (" + info[1] + "), Created on " + info[2] + "\n";
-                        } else {
+                        }
+                        else
+                        {
                             mvars.mergeDBs.Add(ssdb);
                             string ts = info[0] + " (" + info[1] + ")"; //Compile the listbox item string
-                            try {
+                            try
+                            {
                                 dt.Reset();
                                 ssdb.GetTable(dt, SSTable.MergeInfo);
-                                ts += " - For " + dt.Rows[0][0].ToString() + " - SKU Assignment: " + Convert.ToInt16(dt.Rows[0][1]) + 
+                                ts += " - For " + dt.Rows[0][0].ToString() + " - SKU Assignment: " + Convert.ToInt16(dt.Rows[0][1]) +
                                     " to " + Convert.ToInt16(dt.Rows[0][2]);
                             }
-                            catch {
+                            catch
+                            {
                                 ts += " - No additional information";
                             }
 
                             lbox_DatabasesToMerge.Items.Add(ts);
                         }
-                        try {ssdb.CloseDB();} catch{} //Attempt to close the current merge database
+                        try
+                        { ssdb.CloseDB(); }
+                        catch { } //Attempt to close the current merge database
                     }
                 }
 
                 Cursor.Current = Cursors.Default;
 
                 //Display the error message if any databases were excluded
-                if(errmsg.Length > 0) {
+                if (errmsg.Length > 0)
+                {
                     errmsg = "The following files you selected are either not valid SecondSight database files or are " +
                         "SecondSight databases that do not match the master database.\n\n" + errmsg + "\n\nThese files " +
                         "will not be included in the merge.";
                     MessageBox.Show(errmsg, "Some Files Invalid", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } 
+                }
                 //else {
                 //    MessageBox.Show("The selected databases were successfully merged into the selected master.", "Merge Successful",
                 //        MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -182,7 +204,8 @@ namespace SecondSight.Merge
         //Removes the selected entry from the list and closes the corresponding entry in mvars
         private void btn_RemoveSelected_Click(object sender, EventArgs e)
         {
-            if (lbox_DatabasesToMerge.SelectedIndex >= 0) {
+            if (lbox_DatabasesToMerge.SelectedIndex >= 0)
+            {
                 mvars.mergeDBs[lbox_DatabasesToMerge.SelectedIndex].CloseDB();
                 mvars.mergeDBs.RemoveAt(lbox_DatabasesToMerge.SelectedIndex);
                 lbox_DatabasesToMerge.Items.RemoveAt(lbox_DatabasesToMerge.SelectedIndex);

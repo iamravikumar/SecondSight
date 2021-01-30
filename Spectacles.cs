@@ -17,43 +17,42 @@
 
 //Spectacles class
 //Container class for a glasses prescription
-using System;
 
 namespace SecondSight
 {
-	#region Support Structs and Enums
-	
-	public enum DomEye {OD, OS, OU}
-	
-	public struct SpecType 
-	{
-		public const string Single = "S";
-		public const string Multi = "M";
-	}
-	
-    public struct SpecSize   
-    { 
-    	public const string Small = "S";
-    	public const string Medium = "M";
-    	public const string Large = "L";
-    	public const string Child = "C";
+    #region Support Structs and Enums
+
+    public enum DomEye { OD, OS, OU }
+
+    public struct SpecType
+    {
+        public const string Single = "S";
+        public const string Multi = "M";
     }
-    
-    public struct SpecTint   
-    { 
-    	public const string None = "N";
-    	public const string Light = "L";
-    	public const string Dark = "D";
+
+    public struct SpecSize
+    {
+        public const string Small = "S";
+        public const string Medium = "M";
+        public const string Large = "L";
+        public const string Child = "C";
     }
-    
-    public struct SpecGender 
-    { 
-    	public const string Male = "M";
-    	public const string Female = "F";
-    	public const string Uni = "U";
+
+    public struct SpecTint
+    {
+        public const string None = "N";
+        public const string Light = "L";
+        public const string Dark = "D";
     }
-	#endregion
-    
+
+    public struct SpecGender
+    {
+        public const string Male = "M";
+        public const string Female = "F";
+        public const string Uni = "U";
+    }
+    #endregion
+
     public class Spectacles
     {
         public float SphereOD { get; set; }

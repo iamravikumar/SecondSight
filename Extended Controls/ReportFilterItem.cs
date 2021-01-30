@@ -19,9 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SecondSight.Extended_Controls
@@ -64,7 +61,7 @@ namespace SecondSight.Extended_Controls
         private void btn_Add_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ((ReportFilter)(Parent.Parent)).AddItem();
-//            Parent.Controls.Add(new ReportFilterItem());
+            //            Parent.Controls.Add(new ReportFilterItem());
         }
 
         /// <summary>
@@ -79,15 +76,20 @@ namespace SecondSight.Extended_Controls
         {
             //Change visibility and position of certain controls based on the Combo Box's selected index
             //Also populate the Selections combo box if type/gender/size/tint
-            if (cb_FilterBy.SelectedIndex < 9) { //SKU and Rx fields
+            if (cb_FilterBy.SelectedIndex < 9)
+            { //SKU and Rx fields
                 lb_And.Location = new Point(tb_FilterA.Location.X + tb_FilterA.Width + 6, lb_And.Location.Y);
                 dtp_FilterA.Visible = dtp_FilterB.Visible = lb_Equals.Visible = cb_Selections.Visible = false;
                 lb_Between.Visible = tb_FilterA.Visible = lb_And.Visible = tb_FilterB.Visible = true;
-            } else if (cb_FilterBy.SelectedIndex > 12) { //Date fields
+            }
+            else if (cb_FilterBy.SelectedIndex > 12)
+            { //Date fields
                 lb_And.Location = new Point(dtp_FilterA.Location.X + dtp_FilterA.Width + 6, lb_And.Location.Y);
                 tb_FilterA.Visible = tb_FilterB.Visible = lb_Equals.Visible = cb_Selections.Visible = false;
                 lb_Between.Visible = dtp_FilterA.Visible = lb_And.Visible = dtp_FilterB.Visible = true;
-            } else { //Selection fields (type, gender, size, tint)
+            }
+            else
+            { //Selection fields (type, gender, size, tint)
                 PopulateSelections();
                 lb_Between.Visible = dtp_FilterA.Visible = lb_And.Visible = dtp_FilterB.Visible = tb_FilterA.Visible = tb_FilterB.Visible = false;
                 lb_Equals.Visible = cb_Selections.Visible = true;

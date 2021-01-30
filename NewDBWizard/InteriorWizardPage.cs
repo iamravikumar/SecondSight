@@ -20,7 +20,6 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Windows.Forms;
 
 namespace SMS.Windows.Forms
@@ -30,16 +29,16 @@ namespace SMS.Windows.Forms
     /// wizard dialog.
     /// </summary>
 	public class InteriorWizardPage : WizardPage
-	{
+    {
         // ==================================================================
         // Protected Fields
         // ==================================================================
-	    
+
         /// <summary>
         /// The title label.
         /// </summary>
         protected Label m_titleLabel;
-        
+
         /// <summary>
         /// The subtitle label.
         /// </summary>
@@ -49,12 +48,12 @@ namespace SMS.Windows.Forms
         /// The header panel.
         /// </summary>
         protected Panel m_headerPanel;
-        
+
         /// <summary>
         /// The header graphic.
         /// </summary>
         protected PictureBox m_headerPicture;
-        
+
         /// <summary>
         /// The header/body separator.
         /// </summary>
@@ -64,29 +63,29 @@ namespace SMS.Windows.Forms
         // ==================================================================
         // Public Constructors
         // ==================================================================
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SMS.Windows.Forms.InteriorWizardPage">InteriorWizardPage</see>
         /// class.
         /// </summary>
         public InteriorWizardPage()
-		{
-			// This call is required by the Windows Form Designer
-			InitializeComponent();
-		}
+        {
+            // This call is required by the Windows Form Designer
+            InitializeComponent();
+        }
 
 
         // ==================================================================
         // Private Methods
         // ==================================================================
 
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.m_headerSeparator = new System.Windows.Forms.GroupBox();
             this.m_headerPanel = new System.Windows.Forms.Panel();
             this.m_titleLabel = new System.Windows.Forms.Label();
@@ -150,6 +149,6 @@ namespace SMS.Windows.Forms
             this.ResumeLayout(false);
 
         }
-		#endregion
+        #endregion
     }
 }

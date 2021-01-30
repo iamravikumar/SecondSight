@@ -8,34 +8,36 @@
  */
 namespace SecondSight.OptionsDialog
 {
-	partial class SSOptionsPage
-	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
-		
-		/// <summary>
-		/// Disposes resources used by the control.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-		
-		/// <summary>
-		/// This method is required for Windows Forms designer support.
-		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    partial class SSOptionsPage
+    {
+        /// <summary>
+        /// Designer variable used to keep track of non-visual components.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Disposes resources used by the control.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// This method is required for Windows Forms designer support.
+        /// Do not change the method contents inside the source code editor. The Forms designer might
+        /// not be able to load this method if it was changed manually.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_DBFolder = new System.Windows.Forms.TextBox();
@@ -267,26 +269,26 @@ namespace SecondSight.OptionsDialog
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		private System.Windows.Forms.Button btn_DBFolderBrowse;
-		private System.Windows.Forms.TextBox tb_DBFolder;
-		private System.Windows.Forms.Button btn_DBFolderDefault;
-		private System.Windows.Forms.TextBox tb_BackupsFolder;
-		private System.Windows.Forms.Button btn_BackupsFolderDefault;
-		private System.Windows.Forms.Button btn_BackupsFolderBrowse;
-		private System.Windows.Forms.CheckBox chb_AutoBackup;
-		private System.Windows.Forms.TextBox tb_AutoBackupNumberKept;
-		private System.Windows.Forms.TextBox tb_AutoBackupOps;
-		private System.Windows.Forms.TextBox tb_AutoBackupTime;
-		private System.Windows.Forms.CheckBox chb_AutoBackupOps;
+        }
+        private System.Windows.Forms.Button btn_DBFolderBrowse;
+        private System.Windows.Forms.TextBox tb_DBFolder;
+        private System.Windows.Forms.Button btn_DBFolderDefault;
+        private System.Windows.Forms.TextBox tb_BackupsFolder;
+        private System.Windows.Forms.Button btn_BackupsFolderDefault;
+        private System.Windows.Forms.Button btn_BackupsFolderBrowse;
+        private System.Windows.Forms.CheckBox chb_AutoBackup;
+        private System.Windows.Forms.TextBox tb_AutoBackupNumberKept;
+        private System.Windows.Forms.TextBox tb_AutoBackupOps;
+        private System.Windows.Forms.TextBox tb_AutoBackupTime;
+        private System.Windows.Forms.CheckBox chb_AutoBackupOps;
         private System.Windows.Forms.CheckBox chb_AutoBackupTime;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chb_OpenMostRecent;
-	}
+    }
 }

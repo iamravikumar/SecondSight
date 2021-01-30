@@ -20,7 +20,6 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Windows.Forms;
 
 namespace SMS.Windows.Forms
@@ -30,7 +29,7 @@ namespace SMS.Windows.Forms
     /// completion page) within a wizard dialog.
     /// </summary>
     public class ExteriorWizardPage : WizardPage
-	{
+    {
         // ==================================================================
         // Protected Fields
         // ==================================================================
@@ -39,7 +38,7 @@ namespace SMS.Windows.Forms
         /// The title label.
         /// </summary>
         protected Label m_titleLabel;
-        
+
         /// <summary>
         /// The watermark graphic.
         /// </summary>
@@ -49,29 +48,29 @@ namespace SMS.Windows.Forms
         // ==================================================================
         // Public Constructors
         // ==================================================================
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SMS.Windows.Forms.ExteriorWizardPage">ExteriorWizardPage</see>
         /// class.
         /// </summary>
         public ExteriorWizardPage()
-		{
-			// This call is required by the Windows Form Designer
-			InitializeComponent();
-		}
+        {
+            // This call is required by the Windows Form Designer
+            InitializeComponent();
+        }
 
 
         // ==================================================================
         // Private Methods
         // ==================================================================
 
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.m_titleLabel = new System.Windows.Forms.Label();
             this.m_watermarkPicture = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
@@ -104,7 +103,7 @@ namespace SMS.Windows.Forms
             this.ResumeLayout(false);
 
         }
-		#endregion
+        #endregion
 
     }
 }

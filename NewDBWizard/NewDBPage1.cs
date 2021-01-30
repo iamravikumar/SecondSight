@@ -16,58 +16,53 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using SMS.Windows.Forms;
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 
 namespace SecondSight
 {
-	public class NewDBPage1 : ExteriorWizardPage
-	{
+    public class NewDBPage1 : ExteriorWizardPage
+    {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-		private System.ComponentModel.IContainer components = null;
-		private NewDBVars ndbv;
+        private System.ComponentModel.IContainer components = null;
+        private NewDBVars ndbv;
 
-		public NewDBPage1()
-		{
-			// This call is required by the Windows Form Designer.
-			InitializeComponent();
+        public NewDBPage1()
+        {
+            // This call is required by the Windows Form Designer.
+            InitializeComponent();
 
-			// TODO: Add any initialization after the InitializeComponent call
-		}
-		
-		public NewDBPage1(NewDBVars n)
-		{
-			InitializeComponent();
-			ndbv = n;
-		}
+            // TODO: Add any initialization after the InitializeComponent call
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        public NewDBPage1(NewDBVars n)
+        {
+            InitializeComponent();
+            ndbv = n;
+        }
 
-		#region Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewDBPage1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -113,15 +108,15 @@ namespace SecondSight
             this.ResumeLayout(false);
 
         }
-		#endregion
+        #endregion
 
         protected internal override bool OnSetActive()
         {
-            if( !base.OnSetActive() )
+            if (!base.OnSetActive())
                 return false;
-            
+
             // Enable only the Next button on the this page    
-            Wizard.SetWizardButtons( WizardButton.Next );
+            Wizard.SetWizardButtons(WizardButton.Next);
             return true;
         }
     }

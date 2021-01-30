@@ -16,17 +16,16 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
 using System.Collections.Generic;
-	
+using System.ComponentModel;
+using System.Data;
+using System.Windows.Forms;
+
 namespace SecondSight
 {
     public partial class MainForm
     {
-        private enum SearchFieldType {INT, FLOAT, DATE};
+        private enum SearchFieldType { INT, FLOAT, DATE };
         /// <summary>
         /// Click event for the Search By Field button
         /// </summary>
@@ -41,78 +40,105 @@ namespace SecondSight
             string colval = cb_V_SearchByField.SelectedValue.ToString();
 
             //Determine the type of search field we're checking.  SKU and axis are integers, others are floats, except for dates
-            if (cb_V_SearchByField.SelectedIndex == 0 || cb_V_SearchByField.SelectedIndex == 3 || cb_V_SearchByField.SelectedIndex == 7) { //SKU or OD/OS Axis selected
-                sft = SearchFieldType.INT;  
-            } else if (cb_V_SearchByField.SelectedIndex < 9) { //Any other non-date selection
+            if (cb_V_SearchByField.SelectedIndex == 0 || cb_V_SearchByField.SelectedIndex == 3 || cb_V_SearchByField.SelectedIndex == 7)
+            { //SKU or OD/OS Axis selected
+                sft = SearchFieldType.INT;
+            }
+            else if (cb_V_SearchByField.SelectedIndex < 9)
+            { //Any other non-date selection
                 sft = SearchFieldType.FLOAT;
-            } else { //Dates
+            }
+            else
+            { //Dates
                 sft = SearchFieldType.DATE;
             }
 
             //Search routine, separate branch for INT, FLOAT and DATE
-            if (sft == SearchFieldType.INT) { //Search for INT types
+            if (sft == SearchFieldType.INT)
+            { //Search for INT types
                 int searchval = 0;
-                try {
+                try
+                {
                     searchval = Convert.ToInt16(tb_V_SearchByField.Text);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("Search value must be a positive whole number.", "Invalid Search Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_V_SearchByField.SelectAll();
                     tb_V_SearchByField.Focus();
                     return;
                 }
-                
+
                 //Sort the list in ascending order by column to be searched
                 dgv_V_InventoryView.Sort(dgv_V_InventoryView.Columns[colval], ListSortDirection.Ascending);
 
                 //Loop through each row, break if we find a value greater or equal to the target value.
-                foreach (DataRowView drv in bs_V_InventorySource) {
-                    if (Convert.ToInt16(drv[colval]) >= searchval) {
+                foreach (DataRowView drv in bs_V_InventorySource)
+                {
+                    if (Convert.ToInt16(drv[colval]) >= searchval)
+                    {
                         break;
                     }
                     position++;
                 }
-            } else if (sft == SearchFieldType.FLOAT) { //Search for FLOAT types
+            }
+            else if (sft == SearchFieldType.FLOAT)
+            { //Search for FLOAT types
                 float searchval = 0;
-                try {
+                try
+                {
                     searchval = Convert.ToSingle(tb_V_SearchByField.Text);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("Search value must be a real number.", "Invalid Search Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tb_V_SearchByField.SelectAll();
                     tb_V_SearchByField.Focus();
                     return;
                 }
-                
-                if (searchval < 0) {
+
+                if (searchval < 0)
+                {
                     //Sort the list in descending order by column to be searched
                     dgv_V_InventoryView.Sort(dgv_V_InventoryView.Columns[colval], ListSortDirection.Descending);
 
                     //Loop through each row, break if we find a value greater or equal to the target value.
-                    foreach (DataRowView drv in bs_V_InventorySource) {
-                        if (Convert.ToSingle(drv[colval]) <= searchval) {
-                            break;
-                        }
-                        position++;
-                    }
-                } else {
-                    //Sort the list in ascending order by column to be searched
-                    dgv_V_InventoryView.Sort(dgv_V_InventoryView.Columns[colval], ListSortDirection.Ascending);
-
-                    //Loop through each row, break if we find a value greater or equal to the target value.
-                    foreach (DataRowView drv in bs_V_InventorySource) {
-                        if (Convert.ToSingle(drv[colval]) >= searchval) {
+                    foreach (DataRowView drv in bs_V_InventorySource)
+                    {
+                        if (Convert.ToSingle(drv[colval]) <= searchval)
+                        {
                             break;
                         }
                         position++;
                     }
                 }
-            } else { //Search for DATE types
+                else
+                {
+                    //Sort the list in ascending order by column to be searched
+                    dgv_V_InventoryView.Sort(dgv_V_InventoryView.Columns[colval], ListSortDirection.Ascending);
+
+                    //Loop through each row, break if we find a value greater or equal to the target value.
+                    foreach (DataRowView drv in bs_V_InventorySource)
+                    {
+                        if (Convert.ToSingle(drv[colval]) >= searchval)
+                        {
+                            break;
+                        }
+                        position++;
+                    }
+                }
+            }
+            else
+            { //Search for DATE types
                 DateTime searchval = dtp_V_SearchByDate.Value.Date;
 
                 dgv_V_InventoryView.Sort(dgv_V_InventoryView.Columns[colval], ListSortDirection.Ascending);
 
                 //Loop through each row, break if we find a value greater or equal to the target value.
-                foreach (DataRowView drv in bs_V_InventorySource) {
-                    if (Convert.ToDateTime(drv[colval]).Date >= searchval) {
+                foreach (DataRowView drv in bs_V_InventorySource)
+                {
+                    if (Convert.ToDateTime(drv[colval]).Date >= searchval)
+                    {
                         break;
                     }
                     position++;
@@ -121,38 +147,46 @@ namespace SecondSight
 
             //Jump to the area in the datagridview that contains the search results
             dgv_V_InventoryView.ClearSelection();
-            if(position > 1) {
+            if (position > 1)
+            {
                 dgv_V_InventoryView.FirstDisplayedScrollingRowIndex = position - 2;
-            } else {
+            }
+            else
+            {
                 dgv_V_InventoryView.FirstDisplayedScrollingRowIndex = position;
 
             }
-			
-			tb_V_SearchByField.Focus();
-			
-    	}
-    	
-    	/// <summary>
-    	/// SelectedIndexChanged event for cb_V_SearchIn
-    	/// </summary>
+
+            tb_V_SearchByField.Focus();
+
+        }
+
+        /// <summary>
+        /// SelectedIndexChanged event for cb_V_SearchIn
+        /// </summary>
         /// <remarks>
         /// Changes inventory table displayed by the datagridview in the View Inventory tab, either Current Inventory or Dispensed Inventory.
         /// Adds or removes the "Dispensed Date" option in the cb_V_SearchByField combobox as appropriate.
         /// </remarks>
-    	private void cb_V_SearchIn_SelectedIndexChanged(object sender, EventArgs e)
-    	{
-    		try {
-	    		if(cb_V_SearchIn.SelectedIndex == 0) { //Current Inventory selected
-	    			dgv_V_InventoryView.Columns["DateDispensed"].Visible = false;
-	    			bs_V_InventorySource.DataSource = Mydb.InvResults;
+        private void cb_V_SearchIn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cb_V_SearchIn.SelectedIndex == 0)
+                { //Current Inventory selected
+                    dgv_V_InventoryView.Columns["DateDispensed"].Visible = false;
+                    bs_V_InventorySource.DataSource = Mydb.InvResults;
                     bs_V_SearchByField.RemoveAt(10);
-	    		} else { //Dispensed Inventory selected
-	    			dgv_V_InventoryView.Columns["DateDispensed"].Visible = true;
-	    			bs_V_InventorySource.DataSource = dt_V_DispensedTable;
+                }
+                else
+                { //Dispensed Inventory selected
+                    dgv_V_InventoryView.Columns["DateDispensed"].Visible = true;
+                    bs_V_InventorySource.DataSource = dt_V_DispensedTable;
                     bs_V_SearchByField.Add(new KeyValuePair<string, string>("Date Dispensed", "DateDispensed"));
-	    		}
-    		} catch {}
-    	}
+                }
+            }
+            catch { }
+        }
 
         /// <summary>
         /// SelectedIndexChanged event for the cb_V_SearchByField
@@ -163,11 +197,14 @@ namespace SecondSight
         /// </remarks>
         private void cb_V_SearchByField_SelectedIndexChangd(object sender, EventArgs e)
         {
-            if (cb_V_SearchByField.SelectedIndex > 8) {
+            if (cb_V_SearchByField.SelectedIndex > 8)
+            {
                 panel_V_SearchBy.Width = 274;
                 dtp_V_SearchByDate.Visible = true;
                 tb_V_SearchByField.Visible = false;
-            } else {
+            }
+            else
+            {
                 panel_V_SearchBy.Width = 175;
                 dtp_V_SearchByDate.Visible = false;
                 tb_V_SearchByField.Visible = true;

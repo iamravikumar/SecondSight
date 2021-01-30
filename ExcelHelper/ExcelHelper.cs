@@ -15,12 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using ExcelLibrary.Office.Excel;
+using System;
 using System.Data;
+using System.IO;
+using System.Text;
 
 namespace SecondSight.Excel
 {
@@ -78,7 +77,8 @@ namespace SecondSight.Excel
             int tindex = 0;
 
             //Populate the Current Inventory page (data)
-            for (int i = 0; i < currentinv.Rows.Count; i++) {
+            for (int i = 0; i < currentinv.Rows.Count; i++)
+            {
                 tindex = i;
                 ciws.Cells[i + 2, 1] = new Cell(currentinv.Rows[i][0].ToString());
                 ciws.Cells[i + 2, 2] = new Cell(String.Format("{0:0.00}", Convert.ToSingle(currentinv.Rows[i][1]))); //Sphere
@@ -116,7 +116,8 @@ namespace SecondSight.Excel
             diws.Cells[1, 16] = new Cell("Comment");
 
             //Populate the Dispensed Inventory page (data)
-            for (int i = 0; i < dispensedinv.Rows.Count; i++) {
+            for (int i = 0; i < dispensedinv.Rows.Count; i++)
+            {
                 diws.Cells[i + 2, 1] = new Cell(dispensedinv.Rows[i][0].ToString());
                 diws.Cells[i + 2, 2] = new Cell(String.Format("{0:0.00}", Convert.ToSingle(dispensedinv.Rows[i][1]))); //Sphere
                 diws.Cells[i + 2, 3] = new Cell(String.Format("{0:0.00}", Convert.ToSingle(dispensedinv.Rows[i][2]))); //Cylinder
@@ -154,9 +155,12 @@ namespace SecondSight.Excel
         public static void ExportReport(DataTable _dt, string _groupby, string _description, string _path)
         {
             Workbook wb;
-            if (File.Exists(_path)) {
+            if (File.Exists(_path))
+            {
                 wb = Workbook.Open(_path); //Add to the existing spreadsheet
-            } else {
+            }
+            else
+            {
                 wb = new Workbook();
             }
             StringBuilder wsname = new StringBuilder("Report ").Append(wb.Worksheets.Count);
@@ -164,7 +168,8 @@ namespace SecondSight.Excel
 
             ws.Cells[1, 1] = new Cell(_description);
 
-            if (_groupby.Length > 0) { //Summary report
+            if (_groupby.Length > 0)
+            { //Summary report
                 ws.Cells[3, 1] = new Cell(_groupby);
                 ws.Cells[3, 2] = new Cell("Count");
 
@@ -173,7 +178,9 @@ namespace SecondSight.Excel
                 //    ws.Cells[i + 4, 2] = new Cell(_dt.Rows[i][1]);
                 //}
 
-            } else { //Full list report
+            }
+            else
+            { //Full list report
                 //Populate the worksheet (headers)
                 ws.Cells[3, 1] = new Cell("SKU");
                 ws.Cells[3, 2] = new Cell("OD Sphere");
@@ -190,17 +197,22 @@ namespace SecondSight.Excel
                 ws.Cells[3, 13] = new Cell("Tint");
                 ws.Cells[3, 14] = new Cell("Date Added");
 
-                if (_dt.Columns.Count == 16) {
+                if (_dt.Columns.Count == 16)
+                {
                     ws.Cells[3, 15] = new Cell("Date Dispensed");
                     ws.Cells[3, 16] = new Cell("Comment");
-                } else {
+                }
+                else
+                {
                     ws.Cells[3, 15] = new Cell("Comment");
                 }
             }
 
             //Loop through the data table and write each value to the worksheet
-            for (int i = 0; i < _dt.Rows.Count; i++) {
-                for (int j = 0; j < _dt.Columns.Count; j++) {
+            for (int i = 0; i < _dt.Rows.Count; i++)
+            {
+                for (int j = 0; j < _dt.Columns.Count; j++)
+                {
                     ws.Cells[i + 4, j + 1] = new Cell(_dt.Rows[i][j].ToString());
                 }
             }

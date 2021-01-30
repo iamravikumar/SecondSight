@@ -15,18 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace SecondSight
 {
     public partial class MainForm
     {
-    	private BindingSource bs_V_InventorySource;
-        private BindingList<KeyValuePair<string, string> > bs_V_SearchByField;   //Populates the Search By Field combobox
+        private BindingSource bs_V_InventorySource;
+        private BindingList<KeyValuePair<string, string>> bs_V_SearchByField;   //Populates the Search By Field combobox
     }
 }

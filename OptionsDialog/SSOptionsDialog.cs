@@ -16,11 +16,6 @@
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SecondSight.OptionsDialog
@@ -51,11 +46,14 @@ namespace SecondSight.OptionsDialog
         private void btn_OK_Click(Object sender, EventArgs e)
         {
             SSPrefs tprefs = new SSPrefs();
-            try {
+            try
+            {
                 tprefs = OptionsPageGeneral.Apply();
-            } catch {
+            }
+            catch
+            {
                 return; //Do not close the dialog if there was a problem
-			}
+            }
 
             guiprefs.OpenMostRecentDB = tprefs.OpenMostRecentDB;
             guiprefs.ABAfterOps = tprefs.ABAfterOps;

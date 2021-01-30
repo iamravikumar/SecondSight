@@ -18,19 +18,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SecondSight.Extended_Controls
 {
     public partial class ReportFilter : UserControl
     {
-        private BindingList<KeyValuePair<string, string> > bs_FilterSource;
+        private BindingList<KeyValuePair<string, string>> bs_FilterSource;
         private List<ReportFilterItem> filteritems;
 
-        public List<ReportFilterItem> FilterItems { get {return filteritems;} }
+        public List<ReportFilterItem> FilterItems { get { return filteritems; } }
 
         /// <summary>
         /// Default constructor
@@ -38,7 +35,7 @@ namespace SecondSight.Extended_Controls
         public ReportFilter()
         {
             InitializeComponent();
-            bs_FilterSource = new BindingList<KeyValuePair<string, string> >();
+            bs_FilterSource = new BindingList<KeyValuePair<string, string>>();
             filteritems = new List<ReportFilterItem>(6);
 
             bs_FilterSource.Add(new KeyValuePair<string, string>("SKU", "SKU"));
@@ -63,23 +60,34 @@ namespace SecondSight.Extended_Controls
         /// <param name="_dispensed">True if we want to set up for DispensedInventory, false for CurrentInventory</param>
         public void ConfigureComboBoxes(bool _dispensed)
         {
-            if (_dispensed) { //Switching to dispensed inventory.  Add the Date Dispensed entry and refresh
-                if (bs_FilterSource.Count == 15) {
+            if (_dispensed)
+            { //Switching to dispensed inventory.  Add the Date Dispensed entry and refresh
+                if (bs_FilterSource.Count == 15)
+                {
                     return;
-                } else {
-                    bs_FilterSource.Add(new KeyValuePair<string,string>("Date Dispensed", "DateDispensed"));
-                    foreach (ReportFilterItem rfi in filteritems) { //Loop through and refresh each ComboBox's list
+                }
+                else
+                {
+                    bs_FilterSource.Add(new KeyValuePair<string, string>("Date Dispensed", "DateDispensed"));
+                    foreach (ReportFilterItem rfi in filteritems)
+                    { //Loop through and refresh each ComboBox's list
                         int si = rfi.cb_FilterBy.SelectedIndex;
                         ConfigReportFilterItem(rfi);
                         rfi.cb_FilterBy.SelectedIndex = si; //Maintain previous selected index
                     }
                 }
-            } else { //Switching to current inventory.  Remove the Date Dispensed entry and refresh
-                if (bs_FilterSource.Count == 14) {
+            }
+            else
+            { //Switching to current inventory.  Remove the Date Dispensed entry and refresh
+                if (bs_FilterSource.Count == 14)
+                {
                     return;
-                } else {
+                }
+                else
+                {
                     bs_FilterSource.RemoveAt(14);
-                    foreach (ReportFilterItem rfi in filteritems) { //Loop through and refresh each ComboBox's list
+                    foreach (ReportFilterItem rfi in filteritems)
+                    { //Loop through and refresh each ComboBox's list
                         int si = rfi.cb_FilterBy.SelectedIndex < 14 ? rfi.cb_FilterBy.SelectedIndex : 0; //Ensure no index out of range exception
                         ConfigReportFilterItem(rfi);
                         rfi.cb_FilterBy.SelectedIndex = si; //Maintain previous selected value if appropriate
@@ -93,7 +101,8 @@ namespace SecondSight.Extended_Controls
         /// </summary>
         public void ClearItems()
         {
-            foreach (ReportFilterItem rfi in filteritems) {
+            foreach (ReportFilterItem rfi in filteritems)
+            {
                 flop_Filters.Controls.Remove(rfi);
             }
             filteritems.Clear();
@@ -107,66 +116,90 @@ namespace SecondSight.Extended_Controls
         /// <exception cref="System.FormatException">Thrown when one of the filter text boxes is invalid</exception>
         public void ValidateItems()
         {
-            foreach (ReportFilterItem rfi in filteritems) {
-                if (rfi.cb_FilterBy.SelectedIndex < 9) { //Only format and validate fields that use text boxes for their values
-                    if (rfi.cb_FilterBy.SelectedIndex == 0 || rfi.cb_FilterBy.SelectedIndex == 3 || rfi.cb_FilterBy.SelectedIndex == 7 ) { //SKU or Axis - validate for integer
+            foreach (ReportFilterItem rfi in filteritems)
+            {
+                if (rfi.cb_FilterBy.SelectedIndex < 9)
+                { //Only format and validate fields that use text boxes for their values
+                    if (rfi.cb_FilterBy.SelectedIndex == 0 || rfi.cb_FilterBy.SelectedIndex == 3 || rfi.cb_FilterBy.SelectedIndex == 7)
+                    { //SKU or Axis - validate for integer
                         int valA = 0;
                         int valB = 0;
 
-                        try {
+                        try
+                        {
                             valA = Convert.ToInt16(rfi.tb_FilterA.Text);
-                        } catch {
+                        }
+                        catch
+                        {
                             rfi.tb_FilterA.SelectAll();
                             rfi.tb_FilterA.Focus();
                             throw new FormatException("must be a whole number.");
                         }
-                        
-                        try {
+
+                        try
+                        {
                             valB = Convert.ToInt16(rfi.tb_FilterB.Text);
-                        } catch {
+                        }
+                        catch
+                        {
                             rfi.tb_FilterB.SelectAll();
                             rfi.tb_FilterB.Focus();
                             throw new FormatException("must be a whole number.");
                         }
 
                         //Make sure the values are in the correct order for SQLite
-                        if (valA > valB) {
+                        if (valA > valB)
+                        {
                             rfi.tb_FilterA.Text = valB.ToString();
                             rfi.tb_FilterB.Text = valA.ToString();
-                        } else {
+                        }
+                        else
+                        {
                             rfi.tb_FilterA.Text = valA.ToString();
                             rfi.tb_FilterB.Text = valB.ToString();
                         }
-                    } else { //Sphere, Cylinder or Add - validate for float
+                    }
+                    else
+                    { //Sphere, Cylinder or Add - validate for float
                         double valA = 0.0F;
                         double valB = 0.0F;
-                        try {
+                        try
+                        {
                             valA = Convert.ToSingle(rfi.tb_FilterA.Text);
-                        } catch {
+                        }
+                        catch
+                        {
                             rfi.tb_FilterA.SelectAll();
                             rfi.tb_FilterA.Focus();
                             throw new FormatException("must be a real number.");
                         }
 
-                        try {
+                        try
+                        {
                             valB = Convert.ToSingle(rfi.tb_FilterB.Text);
-                        } catch {
+                        }
+                        catch
+                        {
                             rfi.tb_FilterB.SelectAll();
                             rfi.tb_FilterB.Focus();
                             throw new FormatException("must be a real number.");
                         }
 
-                        if (rfi.cb_FilterBy.SelectedIndex == 2 || rfi.cb_FilterBy.SelectedIndex == 6) { //Cylinder - enforce negative
+                        if (rfi.cb_FilterBy.SelectedIndex == 2 || rfi.cb_FilterBy.SelectedIndex == 6)
+                        { //Cylinder - enforce negative
                             valA = -Math.Abs(valA);
                             valB = -Math.Abs(valB);
                         }
-                        
+
                         //Make sure the values are in the correct order for SQLite 
                         //(must have first number <= second number for the BETWEEN keyword in the query)
-                        if(valA > valB) {
+                        if (valA > valB)
+                        {
                             rfi.tb_FilterA.Text = valB.ToString();
                             rfi.tb_FilterB.Text = valA.ToString();
-                        } else {
+                        }
+                        else
+                        {
                             rfi.tb_FilterA.Text = valA.ToString();
                             rfi.tb_FilterB.Text = valB.ToString();
                         }
@@ -182,7 +215,8 @@ namespace SecondSight.Extended_Controls
         {
             ReportFilterItem rfi = new ReportFilterItem();
             flop_Filters.Controls.Add(rfi);
-            if (filteritems.Count > 0) {
+            if (filteritems.Count > 0)
+            {
                 filteritems[filteritems.Count - 1].btn_Add.Visible = false;
             }
             filteritems.Add(rfi);
@@ -197,9 +231,12 @@ namespace SecondSight.Extended_Controls
         {
             flop_Filters.Controls.Remove(_rfi);
             filteritems.Remove(_rfi);
-            if (filteritems.Count == 0) {
+            if (filteritems.Count == 0)
+            {
                 llb_AddFilter.Visible = true;
-            } else {
+            }
+            else
+            {
                 filteritems[filteritems.Count - 1].btn_Add.Visible = true;
             }
         }
@@ -223,7 +260,7 @@ namespace SecondSight.Extended_Controls
         {
             _rfi.cb_FilterBy.DisplayMember = "Key";
             _rfi.cb_FilterBy.ValueMember = "Value";
-            _rfi.cb_FilterBy.DataSource = new BindingList<KeyValuePair<string, string> >(bs_FilterSource);
+            _rfi.cb_FilterBy.DataSource = new BindingList<KeyValuePair<string, string>>(bs_FilterSource);
         }
     }
 }

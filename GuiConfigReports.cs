@@ -15,33 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with SecondSight.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Text;
-	
+
 namespace SecondSight
 {
     public partial class MainForm
     {
-    	//Constants
-    	//DEBUG -Make sure to change these numbers
-    	private const int RLIMITS_H_INITOFFSET = 50;  //First row vertical offset
-    	private const int RLIMITS_H_HEIGHT = 30;  //Height of each row
-    	private const int RREPORT_H_OFFSET = 100; //Amount to subtract from the form Height in addition to the height of gb_R_ConfigureReport
-    	private static readonly int [] RLIMITS_H_OFFSET = new int[]
-    		{4, 0, 4, 1, 4, 1, 4, 4, 0};
-    	private static readonly int [] RLIMITS_W_OFFSET = new int[]
-    		{10, 70, 151, 200, 272, 300, 370, 450, 200}; //Horizontal location
-    	private static readonly int [] RLIMITS_W_WIDTH = new int[]
-    		{60, 80, 49, 70, 28, 70, 80, 70, 70};  //Width of each control
-    	
-    	//What each option in the filter comboboxes translates to (all of these are database fields)
-    	private static readonly string [] RLIMITS_FILTERSTRING = new string[]
-    		{"SphereOD BETWEEN ", "CylinderOD BETWEEN ", "AxisOD BETWEEN ", "AddOD BETWEEN ", 
-    		"SphereOS BETWEEN ", "CylinderOS BETWEEN ", "AxisOS BETWEEN ", "AddOS BETWEEN ", 
-    		"Type=", "Gender=", "Size=", "Tint=", "DateAdded BETWEEN ", "DateDispensed BETWEEN "};
+        //Constants
+        //DEBUG -Make sure to change these numbers
+        private const int RLIMITS_H_INITOFFSET = 50;  //First row vertical offset
+        private const int RLIMITS_H_HEIGHT = 30;  //Height of each row
+        private const int RREPORT_H_OFFSET = 100; //Amount to subtract from the form Height in addition to the height of gb_R_ConfigureReport
+        private static readonly int[] RLIMITS_H_OFFSET = new int[]
+            {4, 0, 4, 1, 4, 1, 4, 4, 0};
+        private static readonly int[] RLIMITS_W_OFFSET = new int[]
+            {10, 70, 151, 200, 272, 300, 370, 450, 200}; //Horizontal location
+        private static readonly int[] RLIMITS_W_WIDTH = new int[]
+            {60, 80, 49, 70, 28, 70, 80, 70, 70};  //Width of each control
+
+        //What each option in the filter comboboxes translates to (all of these are database fields)
+        private static readonly string[] RLIMITS_FILTERSTRING = new string[]
+            {"SphereOD BETWEEN ", "CylinderOD BETWEEN ", "AxisOD BETWEEN ", "AddOD BETWEEN ",
+            "SphereOS BETWEEN ", "CylinderOS BETWEEN ", "AxisOS BETWEEN ", "AddOS BETWEEN ",
+            "Type=", "Gender=", "Size=", "Tint=", "DateAdded BETWEEN ", "DateDispensed BETWEEN "};
 
         private BindingSource bs_R_FullLists;  //BindingSource connecting the full list reports dgv and the result set
         private BindingSource bs_R_Summaries; //BindingSource connecting the summary reports dgv and the result set

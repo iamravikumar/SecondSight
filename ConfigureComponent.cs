@@ -21,81 +21,82 @@
 /// </summary>
 
 using System;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
-using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SecondSight
 {
-	public struct SSPrefs
-	{
-		//Program size/state prefs (not part of options panel)
-		public int		Width;
-		public int 		Height;
-		public bool		Maximized;
-        public bool     NormalDatabase;     //Show all the controls?  True if the opened database is a full SS database, false if it's a merge database
-		public string 	OpenDBPath;			//Full path of the currently open database
-		public string	OpenDBName;			//Name of the currently open database
-		public string	OpenDBLoc;			//Location of the currently open database
-		
-		//Program behavior customization prefs
-		public bool		OpenMostRecentDB;	//Automatically open the last open DB on startup?
-		
-		//Database prefs
-		public string	DefaultBackupDir;	//Default backup folder
-		public string	DefaultDBDir;		//Default database folder
-		
-		//Automatic backup prefs
-		public bool		AutoBackup;  //Perform automatic backups?
-		public bool		ABAfterTime; //After an amount of time?
-		public short	ABTime;		 //How much time
-		public bool		ABAfterOps;  //After a number of operations (add/delete/dispense)?
-		public short	ABOps;		 //How many ops?
-		public short	ABNumberKept;//How many auto backup files are kept.
-	}
+    public struct SSPrefs
+    {
+        //Program size/state prefs (not part of options panel)
+        public int Width;
+        public int Height;
+        public bool Maximized;
+        public bool NormalDatabase;     //Show all the controls?  True if the opened database is a full SS database, false if it's a merge database
+        public string OpenDBPath;           //Full path of the currently open database
+        public string OpenDBName;           //Name of the currently open database
+        public string OpenDBLoc;            //Location of the currently open database
 
-	partial class MainForm
-	{
-		//Constants
-		private const float SPHERE_MAX_VALUE = 20.0f;
+        //Program behavior customization prefs
+        public bool OpenMostRecentDB;   //Automatically open the last open DB on startup?
+
+        //Database prefs
+        public string DefaultBackupDir; //Default backup folder
+        public string DefaultDBDir;     //Default database folder
+
+        //Automatic backup prefs
+        public bool AutoBackup;  //Perform automatic backups?
+        public bool ABAfterTime; //After an amount of time?
+        public short ABTime;         //How much time
+        public bool ABAfterOps;  //After a number of operations (add/delete/dispense)?
+        public short ABOps;      //How many ops?
+        public short ABNumberKept;//How many auto backup files are kept.
+    }
+
+    partial class MainForm
+    {
+        //Constants
+        private const float SPHERE_MAX_VALUE = 20.0f;
         private const float CYLINDER_MAX_VALUE = 10.0f;
         private const float AXIS_MAX_VALUE = 180.0f;
         private const float ADD_MAX_VALUE = 5.0f;
 
-		private SSDataBase Mydb = new SSDataBase();  //The currently open database
-		private FormWindowState LastWindowState;	 //Maximized, minimized, non-maximized
-	    private SSPrefs GuiPrefs;					 //Stores user prefs loaded from the prefs file
-//	    private string installpath;					 //Application's install directory
+        private SSDataBase Mydb = new SSDataBase();  //The currently open database
+        private FormWindowState LastWindowState;     //Maximized, minimized, non-maximized
+        private SSPrefs GuiPrefs;                    //Stores user prefs loaded from the prefs file
+                                                     //	    private string installpath;					 //Application's install directory
         private string mydocspath;                   //User's My Documents path
         private string prefspath;                  //Local appdata path
-	    private DataTable dt_V_DispensedTable;		 //Data table that holds dispensed inventory
+        private DataTable dt_V_DispensedTable;		 //Data table that holds dispensed inventory
         private DataTable dt_Add_MergeTable;         //Data table that holds the Merge subset of inventory in a Merge database
-	    
+
         /// <summary>
         /// Performs additional configuration on controls, based on the information set by LoadPrefs
         /// </summary>
-		private void ConfigureComponent()
-		{
+        private void ConfigureComponent()
+        {
             dt_Add_MergeTable = new DataTable();
-			dt_V_DispensedTable = new DataTable();
-			LoadPrefs();
-			
-			Size = new System.Drawing.Size(GuiPrefs.Width, GuiPrefs.Height);
-			LastWindowState = WindowState;
+            dt_V_DispensedTable = new DataTable();
+            LoadPrefs();
+
+            Size = new System.Drawing.Size(GuiPrefs.Width, GuiPrefs.Height);
+            LastWindowState = WindowState;
 
             //Set maximized state of the program
-            if(GuiPrefs.Maximized) {
-            	WindowState = FormWindowState.Maximized;
-            } else {
-            	WindowState = FormWindowState.Normal;
+            if (GuiPrefs.Maximized)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
             }
 
-		#region Add New Item tabpage config
+            #region Add New Item tabpage config
             bs_Add_InventorySource = new BindingSource();
             bs_Add_InventorySource.DataSource = Mydb.InvResults;
             dgv_Add_InventoryView.ConfigureDGV();
@@ -103,12 +104,13 @@ namespace SecondSight
             dgv_Add_InventoryView.Columns["DateDispensed"].Visible = false;
             dgv_Add_InventoryView.DataSource = bs_Add_InventorySource;
 
-            foreach (DataGridViewColumn col in dgv_Add_InventoryView.Columns) {
+            foreach (DataGridViewColumn col in dgv_Add_InventoryView.Columns)
+            {
                 col.SortMode = DataGridViewColumnSortMode.Automatic;
             }
-		#endregion
+            #endregion
 
-		#region Search tabpage config
+            #region Search tabpage config
             dgv_S_SearchResults.ConfigureDGV();
             dgv_S_SearchResults.Columns["DateDispensed"].Visible = false;
             dgv_S_SearchResults.DataSource = Mydb.DBResults;
@@ -118,14 +120,14 @@ namespace SecondSight
             dgv_S_Closeup.ConfigureDGV();
             dgv_S_Closeup.Columns["DateDispensed"].Visible = false;
             dgv_S_Closeup.DataSource = Mydb.DBResultsAux;
-		#endregion
+            #endregion
 
-		#region Dispense tabpage config
-			dispenseTable = new DataTable();
+            #region Dispense tabpage config
+            dispenseTable = new DataTable();
             deleteTable = new DataTable();
-		#endregion
+            #endregion
 
-		#region View Inventory tabpage config
+            #region View Inventory tabpage config
             bs_V_SearchByField = new BindingList<KeyValuePair<string, string>>();
             bs_V_InventorySource = new BindingSource();
             bs_V_InventorySource.DataSource = Mydb.InvResults;
@@ -145,18 +147,19 @@ namespace SecondSight
             dgv_V_InventoryView.Columns["Score"].Visible = false;
             dgv_V_InventoryView.Columns["DateDispensed"].Visible = false;
             dgv_V_InventoryView.DataSource = bs_V_InventorySource;
-            cb_V_SearchByField.DataSource = bs_V_SearchByField; 
+            cb_V_SearchByField.DataSource = bs_V_SearchByField;
             cb_V_SearchByField.DisplayMember = "Key";
             cb_V_SearchByField.ValueMember = "Value";
             cb_V_SearchByField.SelectedIndex = 0;
-			cb_V_SearchIn.SelectedIndex = 0;
-            foreach (DataGridViewColumn col in dgv_V_InventoryView.Columns) {
+            cb_V_SearchIn.SelectedIndex = 0;
+            foreach (DataGridViewColumn col in dgv_V_InventoryView.Columns)
+            {
                 col.SortMode = DataGridViewColumnSortMode.Automatic;
             }
 
-		#endregion
-			
-		#region Reports tabpage config
+            #endregion
+
+            #region Reports tabpage config
             bs_R_FullLists = new BindingSource();
             bs_R_Summaries = new BindingSource();
 
@@ -167,7 +170,8 @@ namespace SecondSight
             dgv_R_FullLists.ConfigureDGV();
             dgv_R_FullLists.Columns["Score"].Visible = false;
             dgv_R_FullLists.Columns["DateDispensed"].Visible = false;
-            foreach (DataGridViewColumn col in dgv_R_FullLists.Columns) {
+            foreach (DataGridViewColumn col in dgv_R_FullLists.Columns)
+            {
                 col.SortMode = DataGridViewColumnSortMode.Automatic;
             }
 
@@ -176,34 +180,38 @@ namespace SecondSight
 
             ZedGraph.GraphPane gpane = zed_R_Chart.GraphPane;
             gpane.Title.Text = "Report Results";
-		#endregion
-		
+            #endregion
 
-        //A db was opened last time, attempt to open it
-            if(GuiPrefs.OpenMostRecentDB) {
-                try {
-            	    Mydb.OpenDB(GuiPrefs.OpenDBPath); //Valid SecondSight database
-	            } catch {
+
+            //A db was opened last time, attempt to open it
+            if (GuiPrefs.OpenMostRecentDB)
+            {
+                try
+                {
+                    Mydb.OpenDB(GuiPrefs.OpenDBPath); //Valid SecondSight database
+                }
+                catch
+                {
                     return; //Fail quietly since this happens at startup
                 }
 
                 UpdateAfterOpenDB();
             }
-		}
-		
+        }
+
         /// <summary>
         /// Loads and sets the preferences from the prefs file.  Sets any default prefs.
         /// </summary>
         /// <exception cref="System.IO.FileNotFoundException">Thrown when the prefs file is not found</exception>
-		private void LoadPrefs()
+        private void LoadPrefs()
         {
             //Get the install path and store it in the member variable
-//            System.Reflection.Assembly tasm = System.Reflection.Assembly.GetEntryAssembly();
+            //            System.Reflection.Assembly tasm = System.Reflection.Assembly.GetEntryAssembly();
             mydocspath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);   //Get the path to My Documents
             prefspath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);  //Get the local appdata path (for prefs)
-//            installpath = System.IO.Path.GetDirectoryName(tasm.Location);
+                                                                                                    //            installpath = System.IO.Path.GetDirectoryName(tasm.Location);
 
-//            string DEFAULTDBPATH = installpath + "\\Databases";
+            //            string DEFAULTDBPATH = installpath + "\\Databases";
             string DEFAULTDBPATH = mydocspath + "\\SecondSight Databases";
             string DEFAULTBACKUPSPATH = DEFAULTDBPATH + "\\Backups";
             const short DEFAULTSCREENWIDTH = 800;
@@ -215,23 +223,24 @@ namespace SecondSight
             const bool DEFAULTABAFTEROPS = true;
             const bool DEFAULTABAFTERTIME = false;
             const short DEFAULTABTIME = 0;
-		    const short DEFAULTABOPS = 10;
-		    const short DEFAULTABNUMBERKEPT = 5;
+            const short DEFAULTABOPS = 10;
+            const short DEFAULTABNUMBERKEPT = 5;
 
             prefspath = prefspath + "\\SecondSight\\prefs.txt";
-//            string prefspath = installpath + "\\prefs.txt";
+            //            string prefspath = installpath + "\\prefs.txt";
             Hashtable ht = new Hashtable();
 
-        	GuiPrefs.Width = DEFAULTSCREENWIDTH;
-        	GuiPrefs.Height = DEFAULTSCREENHEIGHT;
-        	GuiPrefs.Maximized = DEFAULTISMAXED;
+            GuiPrefs.Width = DEFAULTSCREENWIDTH;
+            GuiPrefs.Height = DEFAULTSCREENHEIGHT;
+            GuiPrefs.Maximized = DEFAULTISMAXED;
             GuiPrefs.NormalDatabase = DEFAULTISNORMALDB;    //True while no database is opened
-        	GuiPrefs.OpenDBLoc = "";
-        	GuiPrefs.OpenDBPath = "";
-        	GuiPrefs.OpenDBName = "";
+            GuiPrefs.OpenDBLoc = "";
+            GuiPrefs.OpenDBPath = "";
+            GuiPrefs.OpenDBName = "";
 
             //If no prefs file exists, load default prefs.  Do not create file, that is handled on program exit
-            if (!File.Exists(prefspath)) {
+            if (!File.Exists(prefspath))
+            {
                 GuiPrefs.OpenMostRecentDB = DEFAULTOPENRECENT;
                 GuiPrefs.ABNumberKept = DEFAULTABNUMBERKEPT;
                 GuiPrefs.ABOps = DEFAULTABOPS;
@@ -241,167 +250,242 @@ namespace SecondSight
                 GuiPrefs.AutoBackup = true;
                 GuiPrefs.DefaultDBDir = DEFAULTDBPATH;//installpath);
                 GuiPrefs.DefaultBackupDir = DEFAULTBACKUPSPATH; //installpath);
-                try {
+                try
+                {
                     Directory.CreateDirectory(GuiPrefs.DefaultBackupDir);
                     Directory.CreateDirectory(Path.GetDirectoryName(prefspath));
-                } catch { }
+                }
+                catch { }
                 return;
             }
 
-        	//Read the prefs file and load them into the data structure        	
-        	using (StreamReader sr = new StreamReader(prefspath))
-		    {
-		       	string line;
-		       		
-		       	while((line = sr.ReadLine()) != null) {
-		       		try {
-			       		string prefname = line.Substring(0, line.IndexOf("="));
-			       		string prefval = line.Substring(line.IndexOf("=")+1);
-			       		ht[prefname] = prefval;
-		       		} catch (Exception){} //Just ignore lines that aren't in the prefs format
-		       	} 
-		    }
+            //Read the prefs file and load them into the data structure        	
+            using (StreamReader sr = new StreamReader(prefspath))
+            {
+                string line;
 
-        	//Programmatically generated prefs
-            try {
+                while ((line = sr.ReadLine()) != null)
+                {
+                    try
+                    {
+                        string prefname = line.Substring(0, line.IndexOf("="));
+                        string prefval = line.Substring(line.IndexOf("=") + 1);
+                        ht[prefname] = prefval;
+                    }
+                    catch (Exception) { } //Just ignore lines that aren't in the prefs format
+                }
+            }
+
+            //Programmatically generated prefs
+            try
+            {
                 GuiPrefs.Width = Convert.ToInt16(ht["Width"]);
-            } catch {
+            }
+            catch
+            {
                 GuiPrefs.Width = DEFAULTSCREENWIDTH;
             }
 
-            try {
+            try
+            {
                 GuiPrefs.Height = Convert.ToInt16(ht["Height"]);
-            } catch {
+            }
+            catch
+            {
                 GuiPrefs.Height = DEFAULTSCREENHEIGHT;
             }
 
-            try {
-                if (Convert.ToInt16(ht["Maximized"]) != 0) {
+            try
+            {
+                if (Convert.ToInt16(ht["Maximized"]) != 0)
+                {
                     GuiPrefs.Maximized = true;
-                } else {
+                }
+                else
+                {
                     GuiPrefs.Maximized = false;
                 }
             }
-            catch { //Pref exists but was not formatted correctly
+            catch
+            { //Pref exists but was not formatted correctly
                 GuiPrefs.Maximized = DEFAULTISMAXED;
             }
 
-            try {
+            try
+            {
                 GuiPrefs.OpenDBPath = ht["OpenDBPath"].ToString();
                 GuiPrefs.OpenDBName = ht["OpenDBName"].ToString();
                 GuiPrefs.OpenDBLoc = ht["OpenDBLoc"].ToString();
-            } catch {
+            }
+            catch
+            {
                 GuiPrefs.OpenDBLoc = "";
                 GuiPrefs.OpenDBPath = "";
                 GuiPrefs.OpenDBName = "";
             }
-	       		
-	       	//User-defined prefs
-	       	//General prefs
-	       	try {
-		       	if(ht["OpenMostRecentDB"] != null) {
-		       		GuiPrefs.OpenMostRecentDB = Convert.ToBoolean(ht["OpenMostRecentDB"]);
-		       	} else {
+
+            //User-defined prefs
+            //General prefs
+            try
+            {
+                if (ht["OpenMostRecentDB"] != null)
+                {
+                    GuiPrefs.OpenMostRecentDB = Convert.ToBoolean(ht["OpenMostRecentDB"]);
+                }
+                else
+                {
                     GuiPrefs.OpenMostRecentDB = DEFAULTOPENRECENT; //Pref does not exist, default to true
-		       	}
-	       	} catch { //Pref exists but was not formatted correctly
+                }
+            }
+            catch
+            { //Pref exists but was not formatted correctly
                 GuiPrefs.OpenMostRecentDB = DEFAULTOPENRECENT;
-	       	}
-	       		
-	       	//Database prefs
-	       	//Default database file location
-	       	if(ht["DefaultDBDir"] != null) {
-	       		try {
-	       			GuiPrefs.DefaultDBDir = ht["DefaultDBDir"].ToString();
-	       			if(GuiPrefs.DefaultDBDir == "") {
-	       				GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
-	       			}
-	       		} catch {
-	       			GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
-	       		}
-	       	} else {
-	       		GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
-	       	}
-	       		
-	       	//Default backup file location
-	       	if(ht["DefaultBackupDir"] != null) {
-	       		try {
-	       			GuiPrefs.DefaultBackupDir = ht["DefaultBackupDir"].ToString();
-	       			if(GuiPrefs.DefaultBackupDir == "") {
-	       				GuiPrefs.DefaultBackupDir = DEFAULTBACKUPSPATH;
-	       			}
-	       		} catch {
+            }
+
+            //Database prefs
+            //Default database file location
+            if (ht["DefaultDBDir"] != null)
+            {
+                try
+                {
+                    GuiPrefs.DefaultDBDir = ht["DefaultDBDir"].ToString();
+                    if (GuiPrefs.DefaultDBDir == "")
+                    {
+                        GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
+                    }
+                }
+                catch
+                {
+                    GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
+                }
+            }
+            else
+            {
+                GuiPrefs.DefaultDBDir = DEFAULTDBPATH;
+            }
+
+            //Default backup file location
+            if (ht["DefaultBackupDir"] != null)
+            {
+                try
+                {
+                    GuiPrefs.DefaultBackupDir = ht["DefaultBackupDir"].ToString();
+                    if (GuiPrefs.DefaultBackupDir == "")
+                    {
+                        GuiPrefs.DefaultBackupDir = DEFAULTBACKUPSPATH;
+                    }
+                }
+                catch
+                {
                     GuiPrefs.DefaultBackupDir = DEFAULTBACKUPSPATH;
-	       		}
-	       	} else {
+                }
+            }
+            else
+            {
                 GuiPrefs.DefaultBackupDir = DEFAULTBACKUPSPATH;
-	       	}
-	       		
-	       	//Perform automatic backups
-	       	if(ht["AutoBackup"] != null) {
-	       		try {
-	       			GuiPrefs.AutoBackup = Convert.ToBoolean(ht["AutoBackup"]);
-	       		} catch {
+            }
+
+            //Perform automatic backups
+            if (ht["AutoBackup"] != null)
+            {
+                try
+                {
+                    GuiPrefs.AutoBackup = Convert.ToBoolean(ht["AutoBackup"]);
+                }
+                catch
+                {
                     GuiPrefs.AutoBackup = DEFAULTAUTOBACKUP;
-	       		}
-	       	} else {
-	       		GuiPrefs.AutoBackup = DEFAULTAUTOBACKUP;
-	       	}
-	       		
-	       	//Auto backup after time
-	       	if(ht["ABAfterTime"] != null) {
-	       		try {
-	       			GuiPrefs.ABAfterTime = Convert.ToBoolean(ht["ABAfterTime"]);
-	       		} catch {
-	       			GuiPrefs.ABAfterTime = DEFAULTABAFTERTIME;
-	       		}
-	       	} else {
+                }
+            }
+            else
+            {
+                GuiPrefs.AutoBackup = DEFAULTAUTOBACKUP;
+            }
+
+            //Auto backup after time
+            if (ht["ABAfterTime"] != null)
+            {
+                try
+                {
+                    GuiPrefs.ABAfterTime = Convert.ToBoolean(ht["ABAfterTime"]);
+                }
+                catch
+                {
+                    GuiPrefs.ABAfterTime = DEFAULTABAFTERTIME;
+                }
+            }
+            else
+            {
                 GuiPrefs.ABAfterTime = DEFAULTABAFTERTIME;
-	       	}
-	       		
-	       	//Auto backup time
-	       	if(ht["ABTime"] != null) {
-	       		try {
-	       			GuiPrefs.ABTime = Convert.ToInt16(ht["ABTime"]);
-	       		} catch {
-	       			GuiPrefs.ABTime = DEFAULTABTIME;
-	       		}
-	       	} else {
-	       		GuiPrefs.ABTime = DEFAULTABTIME;
-	       	}
-	       		
-	       	//Auto backup after ops
-	       	if(ht["ABAfterOps"] != null) {
-	       		try {
-	       			GuiPrefs.ABAfterOps = Convert.ToBoolean(ht["ABAfterOps"]);
-	       		} catch {
-	       			GuiPrefs.ABAfterOps = DEFAULTABAFTEROPS;
-	       		}
-	       	} else {
+            }
+
+            //Auto backup time
+            if (ht["ABTime"] != null)
+            {
+                try
+                {
+                    GuiPrefs.ABTime = Convert.ToInt16(ht["ABTime"]);
+                }
+                catch
+                {
+                    GuiPrefs.ABTime = DEFAULTABTIME;
+                }
+            }
+            else
+            {
+                GuiPrefs.ABTime = DEFAULTABTIME;
+            }
+
+            //Auto backup after ops
+            if (ht["ABAfterOps"] != null)
+            {
+                try
+                {
+                    GuiPrefs.ABAfterOps = Convert.ToBoolean(ht["ABAfterOps"]);
+                }
+                catch
+                {
+                    GuiPrefs.ABAfterOps = DEFAULTABAFTEROPS;
+                }
+            }
+            else
+            {
                 GuiPrefs.ABAfterOps = DEFAULTABAFTEROPS;
-	       	}
-	       		
-	       	//Auto backup after number of ops
-	       	if(ht["ABOps"] != null) {
-	       		try {
-	       			GuiPrefs.ABOps = Convert.ToInt16(ht["ABOps"]);
-	       		} catch {
-	       			GuiPrefs.ABOps = DEFAULTABOPS;
-	       		}
-	       	} else {
-	       		GuiPrefs.ABOps = DEFAULTABOPS;
-	       	}
-	       		
-	       	//Number of automatic backups kept
-	       	if(ht["ABNumberKept"] != null) {
-	       		try {
-	       			GuiPrefs.ABNumberKept = Convert.ToInt16(ht["ABNumberKept"]);
-	       		} catch {
-	       			GuiPrefs.ABNumberKept = DEFAULTABNUMBERKEPT;
-	       		}
-	       	} else {
-	       		GuiPrefs.ABNumberKept = DEFAULTABNUMBERKEPT;
-	       	}
+            }
+
+            //Auto backup after number of ops
+            if (ht["ABOps"] != null)
+            {
+                try
+                {
+                    GuiPrefs.ABOps = Convert.ToInt16(ht["ABOps"]);
+                }
+                catch
+                {
+                    GuiPrefs.ABOps = DEFAULTABOPS;
+                }
+            }
+            else
+            {
+                GuiPrefs.ABOps = DEFAULTABOPS;
+            }
+
+            //Number of automatic backups kept
+            if (ht["ABNumberKept"] != null)
+            {
+                try
+                {
+                    GuiPrefs.ABNumberKept = Convert.ToInt16(ht["ABNumberKept"]);
+                }
+                catch
+                {
+                    GuiPrefs.ABNumberKept = DEFAULTABNUMBERKEPT;
+                }
+            }
+            else
+            {
+                GuiPrefs.ABNumberKept = DEFAULTABNUMBERKEPT;
+            }
         }
-	}
+    }
 }

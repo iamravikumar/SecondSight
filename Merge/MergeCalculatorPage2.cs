@@ -17,14 +17,12 @@
 
 using SMS.Windows.Forms;
 using System;
-using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SecondSight.Merge
 {
-	public class MergeCalculatorPage2 : MergeCalculatorPage
+    public class MergeCalculatorPage2 : MergeCalculatorPage
     {
         private Label lb_Instructions;
         private Button btn_AddGroup;
@@ -61,22 +59,29 @@ namespace SecondSight.Merge
         protected internal override string OnWizardNext()
         {
             //Find sku range based on number of glasses to add
-            if(Wizard.masterdb.IsOpen()) {
+            if (Wizard.masterdb.IsOpen())
+            {
                 Wizard.masterdb.GetCurrentInventory(); //Make sure the inventory is current
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("You must select a master database to proceed.", "No Matser Database Selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return "MergeCalculatorPage2";
             }
 
             //Calculate the assigned SKU range for each entry
-            for(int i = 0; i < lv_Groups.Items.Count; i++) {
+            for (int i = 0; i < lv_Groups.Items.Count; i++)
+            {
                 CalculateSKURange(i);
             }
 
-            if(lv_Groups.Items.Count > 0) {
+            if (lv_Groups.Items.Count > 0)
+            {
                 return "MergeCalculatorPage3";
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("You must add at least one group to the plan to proceed.", "No Groups",
                     MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return "MergeCalculatorPage2";
@@ -90,19 +95,22 @@ namespace SecondSight.Merge
 
         protected internal override bool OnSetActive()
         {
-            if( !base.OnSetActive() )
+            if (!base.OnSetActive())
                 return false;
-            
-            try {   //Attempt to populate the master database label
+
+            try
+            {   //Attempt to populate the master database label
                 Wizard.currentdb.GetTable(dbinfotable, SSTable.DBInfo);
-                lb_CurrentMaster.Text = "Master Database: " + dbinfotable.Rows[0][0].ToString() + 
+                lb_CurrentMaster.Text = "Master Database: " + dbinfotable.Rows[0][0].ToString() +
                     " (" + dbinfotable.Rows[0][1].ToString() + ")";
-            } catch {
+            }
+            catch
+            {
                 lb_CurrentMaster.Text = "No master database currently loaded.";
             }
 
             // Enable both the Next and Back buttons on this page    
-            Wizard.SetWizardButtons( WizardButton.Back | WizardButton.Next );
+            Wizard.SetWizardButtons(WizardButton.Back | WizardButton.Next);
             return true;
         }
 
@@ -120,18 +128,25 @@ namespace SecondSight.Merge
             ofd.DefaultExt = ".ssd";
 
             //Process the open file dialog
-            if (ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 SSDataBase ssdbt = new SSDataBase();
 
                 //If the file name is the same as the "current" database's filename, that means the user wants to select the
                 //database currently open in the main program.  Don't attempt to open that one a second time.  Otherwise
                 //attempt to open the selected database
-                if (ofd.FileName == Wizard.currentdb.MyPath) {
+                if (ofd.FileName == Wizard.currentdb.MyPath)
+                {
                     Wizard.masterdb = Wizard.currentdb; //Set the master to the currently open db
-                } else {
-                    try { //Attempt to open the selected database
+                }
+                else
+                {
+                    try
+                    { //Attempt to open the selected database
                         ssdbt.OpenDB(ofd.FileName);
-                    } catch { //Not a valid secondsight database
+                    }
+                    catch
+                    { //Not a valid secondsight database
                         MessageBox.Show("The selected file is not a valid SecondSight database and cannot be used as the master database for a merge.",
                             "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         return;
@@ -143,11 +158,14 @@ namespace SecondSight.Merge
                 string tname;
                 string tloc;
                 System.Data.DataTable dt = new System.Data.DataTable();
-                try {
+                try
+                {
                     Wizard.masterdb.GetTable(dt, SSTable.DBInfo);
                     tname = Convert.ToString(dt.Rows[0][0]);
                     tloc = Convert.ToString(dt.Rows[0][1]);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("The selected file is not a valid SecondSight database and cannot be used as the master database for a merge.",
                         "Invalid File", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
@@ -167,18 +185,24 @@ namespace SecondSight.Merge
 
             MCAddGroupDialog agd = new MCAddGroupDialog();
             agd.StartPosition = FormStartPosition.CenterParent;
-            if(agd.ShowDialog() == DialogResult.OK) {
+            if (agd.ShowDialog() == DialogResult.OK)
+            {
                 ListViewItem tlvi = new ListViewItem();
-                if (agd.ReturnLabel.Length > 0) {
-                    foreach (ListViewItem lvi in lv_Groups.Items) {
-                        if (lvi.Text == agd.ReturnLabel) {  //Duplicate label entered.  Display error message and exit.
+                if (agd.ReturnLabel.Length > 0)
+                {
+                    foreach (ListViewItem lvi in lv_Groups.Items)
+                    {
+                        if (lvi.Text == agd.ReturnLabel)
+                        {  //Duplicate label entered.  Display error message and exit.
                             MessageBox.Show(String.Format("An entry with the label \"{0}\" already exists.  Please enter a different label name.", agd.ReturnLabel),
                                 "Label already exists.", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return;
                         }
                     }
                     tlvi.Text = agd.ReturnLabel;
-                } else {
+                }
+                else
+                {
                     tlvi.Text = String.Format("Group {0}", lv_Groups.Items.Count + 1);
                 }
 
@@ -192,7 +216,8 @@ namespace SecondSight.Merge
         /// </summary>
         private void btn_RemoveSelected_Click(object sender, EventArgs e)
         {
-            if(lv_Groups.SelectedIndices.Count > 0) {
+            if (lv_Groups.SelectedIndices.Count > 0)
+            {
                 lv_Groups.Items.RemoveAt(lv_Groups.SelectedIndices[0]);
             }
         }
@@ -215,40 +240,53 @@ namespace SecondSight.Merge
             numtarget += (numtarget / 20) + 1;  //Add 5% for a buffer
 
             //Determine minimum sku
-            if (Wizard.mcvars.MinSKU.Count > 0) {
+            if (Wizard.mcvars.MinSKU.Count > 0)
+            {
                 minsku = Wizard.mcvars.MaxSKU[_index - 1]; //Temporarily store the old maximum
-            } else { //No old maximums, this is the first calculated set.  Take minimum from textbox or default
-                try {
+            }
+            else
+            { //No old maximums, this is the first calculated set.  Take minimum from textbox or default
+                try
+                {
                     minsku = Convert.ToInt16(tb_MinSKU.Text) - 1;
-                } catch {
+                }
+                catch
+                {
                     minsku = 0;
                 }
 
-                if (minsku < 0) {
+                if (minsku < 0)
+                {
                     minsku = 0;
                 }
             }
 
             //Find starting index for this range
-            while (currentindex < numrecords && Convert.ToInt16(Wizard.masterdb.InvResults.Rows[currentindex][0]) <= minsku) {
+            while (currentindex < numrecords && Convert.ToInt16(Wizard.masterdb.InvResults.Rows[currentindex][0]) <= minsku)
+            {
                 currentindex++;
             }
 
             minsku++;       //Initial minimum is one greater than the old maximum
 
             //Loop until we find the first free SKU starting with the initial minimum
-            while (currentindex < numrecords && Convert.ToInt16(Wizard.masterdb.InvResults.Rows[currentindex][0]) == minsku) {
+            while (currentindex < numrecords && Convert.ToInt16(Wizard.masterdb.InvResults.Rows[currentindex][0]) == minsku)
+            {
                 minsku++;
                 currentindex++;
             }
 
             currentsku = expectedsku = minsku;
             //Loop through starting at currentindex and count the free spaces until we hit our target or the end of the current inventory
-            while (currentindex < numrecords && count < numtarget) {
+            while (currentindex < numrecords && count < numtarget)
+            {
                 currentsku = Convert.ToInt16(Wizard.masterdb.InvResults.Rows[currentindex][0]);
-                if (expectedsku < currentsku) { //This means there's a free SKU, increment the count
+                if (expectedsku < currentsku)
+                { //This means there's a free SKU, increment the count
                     count++;
-                } else { //expectedsku == currentsku, no hole, increment the list index
+                }
+                else
+                { //expectedsku == currentsku, no hole, increment the list index
                     currentindex++;
                 }
                 expectedsku++;
@@ -260,9 +298,12 @@ namespace SecondSight.Merge
 
             //If we reached the end of the current inventory, the max sku is the currentsku plus what's left of the target number
             //Otherwise it's just the currentsku
-            if (currentindex < Wizard.masterdb.InvResults.Rows.Count) {
+            if (currentindex < Wizard.masterdb.InvResults.Rows.Count)
+            {
                 Wizard.mcvars.MaxSKU.Add(currentsku);
-            } else {
+            }
+            else
+            {
                 Wizard.mcvars.MaxSKU.Add(currentsku + (numtarget - count));
             }
         }
