@@ -237,6 +237,20 @@ namespace SecondSight
                 nr.Comment = tb_Add_Comment.Text;
                 nr.DateAdded = String.Format("{0:yyyy-MM-dd}", DateTime.Now);
 
+                // Step 2.5 - Convert to negative CYL representation
+                if (nr.CylOD > 0)
+                {
+                    nr.SphereOD += nr.CylOD;
+                    nr.CylOD *= -1;
+                    nr.AxisOD = (nr.AxisOD + 90) % 180;
+                }
+                if (nr.CylOS > 0)
+                {
+                    nr.SphereOS += nr.CylOS;
+                    nr.CylOS *= -1;
+                    nr.AxisOS = (nr.AxisOS + 90) % 180;
+                }
+
                 //Step 3 - Add the new SpecsRecord to the database
                 Mydb.Insert(nr, SSTable.Current);
                 Mydb.GetCurrentInventory(); //Refresh the displayed inventory

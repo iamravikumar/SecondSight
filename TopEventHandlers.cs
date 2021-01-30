@@ -285,9 +285,9 @@ namespace SecondSight
 	    					val += 0.05F;
 	    			}
 	    		}
-	    		if(box == RxBox.Cyl)
-	    			val = -Math.Abs(val);
-	    		tb.Text = val.ToString("0.00");
+                // if(box == RxBox.Cyl)
+                //     val = -Math.Abs(val); // CYL is converted later if necessary
+                tb.Text = val.ToString("0.00");
 		    	
 		    	//Checks for valid range
 		    	if(box == RxBox.Sphere) {
